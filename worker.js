@@ -4,6 +4,8 @@
 //Shift+F5 in Chrome to reload
 console.log("SW startup");
 
+var globalvar = 0;
+
 self.addEventListener('install', function(event) {
   console.log("SW installed");
 });
@@ -13,6 +15,6 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log("Caught a fetch!");
+  console.log("Globalvar:" + globalvar++);
   event.respondWith(new Response("Hello world!" + Math.random()));
 });
