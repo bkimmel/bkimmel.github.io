@@ -2,7 +2,7 @@ console.log('\'Allo \'Allo!');
 
 console.log(!!navigator.serviceWorker.register);
 
-navigator.serviceWorker.register('/scripts/worker.js', {
+navigator.serviceWorker.register('s/worke.js', {
   scope: '/'
 }).then(function(reg) {
   console.log('◕‿◕', reg);
