@@ -11,6 +11,6 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log("Caught a fetch!");
+  console.log("Caught a fetch2!");
   event.respondWith(new Response("Hello world!11"));
 });
