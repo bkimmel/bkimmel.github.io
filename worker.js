@@ -42,7 +42,7 @@ self.addEventListener('fetch', function(event) {
   console.log("install ran?: " + installran);
   console.log("Fetch For::" + event.request.url);
   var rando = Math.random() * 10;
-  if( event.request.url.match(/.html$/) || event.request.url === '/') {
+  if( event.request.url === 'https://bkimmel.github.io/') {
     console.log("HTML Fetch::" + event.request.url);
     event.respondWith(rando > 5 ? fetch("/otherindex.html") : new Response("Hello world!" + Math.random()));
   }
