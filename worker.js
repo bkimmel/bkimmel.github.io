@@ -19,7 +19,7 @@ function Prom() {
 }
 
 function someothercrazyfunction(res) {
-  var rand = Math.random * 2000 + 2000;
+  var rand = Math.random() * 2000 + 2000;
   setTimeout(function(){ res('waited ' + rand + ' ms!!'); }, rand)
 }
 
