@@ -1,5 +1,7 @@
 // The SW will be shutdown when not in use to save memory,
 // be aware that any global state is likely to disappear
+
+//Shift+F5 in Chrome to reload
 console.log("SW startup");
 
 self.addEventListener('install', function(event) {
@@ -12,5 +14,5 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   console.log("Caught a fetch!");
-  event.respondWith(new Response("Hello world1!"));
+  event.respondWith(new Response("Hello world!" + Math.random()));
 });
