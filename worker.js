@@ -42,5 +42,5 @@ self.addEventListener('fetch', function(event) {
   console.log("install ran?: " + installran);
   var rando = Math.random() * 10;
   
-  event.respondWith(rando > 5 ? fetch("https://www.google.com") : new Response("Hello world!" + Math.random()));
+  event.respondWith(rando > 5 ? fetch("/otherindex.html") : new Response("Hello world!" + Math.random()));
 });
