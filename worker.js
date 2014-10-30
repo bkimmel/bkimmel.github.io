@@ -40,5 +40,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   console.log("Globalvar:" + globalvar++);
   console.log("install ran?: " + installran);
-  event.respondWith(new Response("Hello world!" + Math.random()));
+  var rando = Math.random() * 10;
+  
+  event.respondWith(rando > 5 ? fetch("http://www.google.com") : new Response("Hello world!" + Math.random()));
 });
