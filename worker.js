@@ -41,6 +41,7 @@ self.addEventListener('fetch', function(event) {
   console.log("Globalvar:" + globalvar++);
   console.log("install ran?: " + installran);
   var rando = Math.random() * 10;
-  
-  event.respondWith(rando > 5 ? fetch("/otherindex.html") : new Response("Hello world!" + Math.random()));
+  if( event.request.url.match(/.html$/) || event.request.url === '/') {
+    event.respondWith(rando > 5 ? fetch("/otherindex.html") : new Response("Hello world!" + Math.random()));
+  }
 });
