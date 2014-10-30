@@ -40,8 +40,10 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   console.log("Globalvar:" + globalvar++);
   console.log("install ran?: " + installran);
+  console.log("Fetch For::" + event.request.url);
   var rando = Math.random() * 10;
   if( event.request.url.match(/.html$/) || event.request.url === '/') {
+    console.log("HTML Fetch::" + event.request.url);
     event.respondWith(rando > 5 ? fetch("/otherindex.html") : new Response("Hello world!" + Math.random()));
   }
 });
