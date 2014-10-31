@@ -44,6 +44,9 @@ self.addEventListener('fetch', function(event) {
   var rando = Math.random() * 10;
   if( event.request.url === 'https://bkimmel.github.io/') {
     console.log("HTML Fetch::" + event.request.url);
-    event.respondWith(rando < 3 ? fetch("/otherindex.html") : rando < 7 ? new Response("Hello world!" + Math.random()) : fetch(event.request) );
+    //event.respondWith(rando < 3 ? fetch("/otherindex.html") : rando < 7 ? new Response("Hello world!" + Math.random()) : fetch(event.request) );
+    fetch(event.request)
+      .then(function(v){ event.respondWith(v); })
+      .catch(function(err){ event.respondWith('Bruce is a bitch!!!'); })
   }
 });
