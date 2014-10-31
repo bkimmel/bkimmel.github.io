@@ -47,6 +47,6 @@ self.addEventListener('fetch', function(event) {
     //event.respondWith(rando < 3 ? fetch("/otherindex.html") : rando < 7 ? new Response("Hello world!" + Math.random()) : fetch(event.request) );
     fetch(event.request)
       .then(function(v){ event.respondWith(v); })
-      .catch(function(err){ event.respondWith('Bruce is a bitch!!!'); })
+      .catch(function(err){ event.respondWith('Bruce is a bitch!!!'); });
   }
 });
