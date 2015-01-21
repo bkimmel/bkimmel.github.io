@@ -22,13 +22,20 @@ body {
 }
 
 h2 {
-	padding: 60px;
+	padding: 0 60px;
 	font-size: 40px;
 }
 
 h3 {
-	padding: 60px;
+	padding: 0 60px;
 	font-size: 30px;
+	transition-property: all;
+	transition-duration: 1500ms;
+	transition-timing-function: ease-in;
+}
+
+h3.rotate:hover {
+	transform: rotateZ(90deg);
 }
 
 .browsehappy {
