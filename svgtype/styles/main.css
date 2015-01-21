@@ -29,6 +29,7 @@ h2 {
 h3 {
 	padding: 0 60px;
 	font-size: 30px;
+	margin: 20px 0;
 	transition-property: all;
 	transition-duration: 750ms;
 	transition-delay: 0ms;
@@ -53,6 +54,11 @@ h3.flip:hover {
 h3.zoom:hover {
 	transform: scale(2);
 	-webkit-transform: scale(2);
+	color: red;
+}
+
+h3.zoom:ls {
+	letter-spacing: 2em;
 	color: red;
 }
 
