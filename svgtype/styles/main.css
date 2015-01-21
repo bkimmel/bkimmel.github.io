@@ -84,6 +84,7 @@ svg {
 	transition-duration: 750ms;
 	transition-delay: 0ms;
 	transition-timing-function: ease-in;
+	stroke: rgba(0,0,0,1);
 	cursor: pointer;
 }
 
