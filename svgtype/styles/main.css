@@ -93,6 +93,19 @@ svg {
 	stroke-width: 5px;
 }
 
+.anfill {
+	transition-property: all;
+	transition-duration: 750ms;
+	transition-delay: 0ms;
+	transition-timing-function: ease-in;
+	fill: rgba(0,0,0,1);
+	cursor: pointer;
+}
+
+.anfill:hover {
+	fill: rgba(0,0,0,.1);
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
