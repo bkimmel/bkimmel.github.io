@@ -33,6 +33,7 @@ h3 {
 	transition-duration: 1500ms;
 	transition-delay: 0ms;
 	transition-timing-function: ease-in;
+	transform-origin: 3em .5em;
 	cursor: pointer;
 }
 
