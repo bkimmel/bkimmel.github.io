@@ -30,20 +30,30 @@ h3 {
 	padding: 0 60px;
 	font-size: 30px;
 	transition-property: all;
-	transition-duration: 1500ms;
+	transition-duration: 750ms;
 	transition-delay: 0ms;
 	transition-timing-function: ease-in;
 	transform-origin: 3em .5em;
 	cursor: pointer;
 }
 
-h3.rotate {
-	color: red;
-}
 
 h3.rotate:hover {
 	transform: rotateZ(90deg);
 	-webkit-transform: rotateZ(90deg);
+	color: red;
+}
+
+h3.flip:hover {
+	transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+	color: red;
+}
+
+h3.zoom:hover {
+	transform: scale(2);
+	-webkit-transform: scale(2);
+	color: red;
 }
 
 .browsehappy {
