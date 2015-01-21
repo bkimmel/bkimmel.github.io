@@ -36,6 +36,10 @@ h3 {
 	cursor: pointer;
 }
 
+h3.rotate {
+	color: red;
+}
+
 h3.rotate:hover {
 	transform: rotateZ(90deg);
 	-webkit-transform: rotateZ(90deg);
