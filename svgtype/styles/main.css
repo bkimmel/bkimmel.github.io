@@ -57,7 +57,12 @@ h3.zoom:hover {
 	color: red;
 }
 
-h3.zoom:ls {
+h3.ls:hover {
+	letter-spacing: 2em;
+	color: red;
+}
+
+h3.ws:hover {
 	letter-spacing: 2em;
 	color: red;
 }
