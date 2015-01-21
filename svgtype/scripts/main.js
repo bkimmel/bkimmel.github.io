@@ -8,11 +8,11 @@ document.getElementById('scrgrad').addEventListener('click', function(){
   function stepgrad() {
     if (Date.now() - _start >= dur) {
 	  console.log('complete');
-      return gradstop.setAttribute(null, 'offset', gradstate + '%');
+      return gradstop.setAttribute('offset', gradstate + '%');
     }
     var pct = !!gradstate ? ( ( ( Date.now() - _start ) / dur ) * gradstate ) + '%' : ( gradstate - ( ( ( Date.now() - _start ) / dur ) * gradstate ) ) + '%';
     requestAnimationFrame(function(){
-      gradstop.setAttribute(null, 'offset', pct);
+      gradstop.setAttribute('offset', pct);
       stepgrad();
     });
   }
