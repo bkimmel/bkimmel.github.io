@@ -79,17 +79,17 @@ svg {
 	font-weight: bold;
 }
 
-.anstroke:hover {
-	stroke-width: 5px;
-}
-
-.anstroke:hover {
-	stroke-width: 5px;
+.anstroke {
 	transition-property: all;
 	transition-duration: 750ms;
 	transition-delay: 0ms;
 	transition-timing-function: ease-in;
 	cursor: pointer;
+}
+
+.anstroke:hover {
+	color: rgba(200,0,0,.3);
+	stroke-width: 5px;
 }
 
 .browsehappy {
