@@ -39,6 +39,7 @@
 					  <stop offset="0%"   stop-color="#00ee00" stop-opacity="1"/>
 					  <stop offset="100%" stop-color="#770000" stop-opacity="1" />
 					</radialGradient>
+					<path id="myTextPath" d="M75,20 a1,1 0 0,0 100,0" />
 				</defs>
 			
 				<text x="20" y="40">Example SVG Text</text>
@@ -48,7 +49,11 @@
 				<text x="20" y="200" style="stroke: #000000;" class="anfill">...Can Also Be Animated</text>
 				<text x="20" y="240" style="fill:url(#myRadialGradient4);">FUCK YEAH GRADIENTS</text>
 				<text x="20" y="280" style="stroke:url(#myRadialGradient4); fill: #000000;">..on Stroke too</text>
-				<text x="20" y="320" style="stroke: none;" class="angrad">And it can also be animated</text>
+				<text x="10" y="320" style="stroke: #000000;">
+				  <textPath xlink:href="#myTextPath" >
+						Text along a curved path...
+				  </textPath>
+				</text>
 				
 			</svg>
 		</article>
