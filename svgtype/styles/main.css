@@ -106,6 +106,19 @@ svg {
 	fill: rgba(0,0,0,.1);
 }
 
+.angrad {
+	transition-property: all;
+	transition-duration: 750ms;
+	transition-delay: 0ms;
+	transition-timing-function: ease-in;
+	fill: rgba(0,0,0,1);
+	cursor: pointer;
+}
+
+.angrad:hover {
+	fill: url(#myRadialGradient4);
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
