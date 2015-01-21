@@ -21,6 +21,16 @@ body {
     letter-spacing: -1px;
 }
 
+h2 {
+	padding: 60px;
+	font-size: 40px;
+}
+
+h3 {
+	padding: 60px;
+	font-size: 30px;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
