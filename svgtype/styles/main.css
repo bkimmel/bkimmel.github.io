@@ -58,7 +58,7 @@ h3.zoom:hover {
 }
 
 h3.td:hover {
-	transform: rotate3d(1, 0, 0, 45deg);
+	transform: rotate3d(1, .5, 0, 45deg);
 	color: red;
 }
 
