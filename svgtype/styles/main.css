@@ -72,6 +72,10 @@ h3.ws:hover {
 	color: red;
 }
 
+svg {
+	font-size: 30px;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
