@@ -63,7 +63,7 @@ h3.ls:hover {
 }
 
 h3.ws:hover {
-	letter-spacing: 2em;
+	word-spacing: 4em;
 	color: red;
 }
 
