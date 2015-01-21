@@ -57,6 +57,11 @@ h3.zoom:hover {
 	color: red;
 }
 
+h3.td:hover {
+	transform: rotate3d(1, 0, 0, 45deg);
+	color: red;
+}
+
 h3.ls:hover {
 	letter-spacing: 2em;
 	color: red;
