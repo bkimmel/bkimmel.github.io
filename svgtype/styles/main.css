@@ -119,6 +119,14 @@ svg {
 	fill: url(#myRadialGradient4);
 }
 
+.anspan tspan {
+	dy: 5 10 20;
+}
+
+.anspan:hover tspan {
+	dy: 20 10 5;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
