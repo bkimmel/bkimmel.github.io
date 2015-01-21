@@ -31,6 +31,7 @@ h3 {
 	font-size: 30px;
 	transition-property: all;
 	transition-duration: 1500ms;
+	transition-delay: 0ms;
 	transition-timing-function: ease-in;
 	cursor: pointer;
 }
