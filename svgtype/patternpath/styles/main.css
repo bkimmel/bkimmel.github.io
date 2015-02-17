@@ -37,7 +37,7 @@ html, body {
 body {
   background: gold -webkit-radial-gradient(#ffd700, #ff4500);
   background: gold radial-gradient(#ffd700, #ff450);
-  font: 14.5em/1 Open Sans, Impact;
+  font: 10em/1 Open Sans, Impact;
   text-transform: uppercase;
   margin: 0;
 }
