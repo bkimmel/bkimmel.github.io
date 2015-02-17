@@ -24,6 +24,25 @@
   transform: rotate(32deg);
 }
 
+/* SET 1 Changes: */
+
+svg:nth-child(2) {
+	font: .5em/1 Open Sans, Impact;
+}
+
+svg:nth-child(2) .text-copy-stroke {
+  fill: none;
+  stroke: rgba(255,255,255,.4);
+  stroke-width: 5px;
+}
+
+svg:nth-child(2) .c-fill {
+  fill: url(#p-lines-gold);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 /* Fix for firefox */
 .r-fill--color {
   fill: #1a8cff;
@@ -37,13 +56,13 @@ html, body {
 body {
   background: gold -webkit-radial-gradient(#ffd700, #ff4500);
   background: gold radial-gradient(#ffd700, #ff450);
-  font: 10em/1 Open Sans, Impact;
+  font: 7em/1 Open Sans, Impact;
   text-transform: uppercase;
   margin: 0;
 }
 
 svg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }

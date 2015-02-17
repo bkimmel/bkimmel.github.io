@@ -45,7 +45,7 @@
 				  fill="hsl(210,100%,50%)"></rect>
 
 			<g stroke="rgba(255,255,255,.4)"
-			   stroke-width="20">
+			   stroke-width="10">
 			  <path d="M25,0 25,100"
 					></path>
 			</g>
@@ -75,6 +75,73 @@
 					class="c-fill"
 					></circle>
 		  </g>
+		</svg>
+		<svg viewBox="0 0 600 300">
+			<!-- Symbol with text -->
+		  <symbol id="s-text-gold">
+			<text text-anchor="middle"
+				  x="50%" y="50%" dy=".35em"
+				  class="text--line"
+				  >
+			  Flash Sale
+			</text>    
+		  </symbol>
+
+		  <!-- Clippath -->
+		  <clippath id="cp-text-gold">
+			<text text-anchor="middle"
+				  x="50%" y="50%" dy=".35em"
+				  class="text--line"
+				  >
+			  Flash Sale
+			</text>
+		  </clippath>
+		
+		    <!-- DIFFERENT PATTERN -->
+			<pattern
+				   id="p-lines-gold"
+				   width="40"
+				   height="50"
+				   viewBox="0 0 40 50"
+				   patternUnits="userSpaceOnUse"
+				   >
+			<rect
+				  width="100%"
+				  height="100%"
+				  fill="hsl(210,100%,50%)"></rect>
+
+			<g stroke="gold"
+			   stroke-width="20">
+			  <path d="M25,0 25,100"
+					></path>
+			</g>
+
+		  </pattern>
+		
+		
+			<!-- Symbol for shadow -->
+		  <use xlink:href="#s-text-gold"
+			   class="text-copy--shadow"></use>
+
+		  <!-- Symbol for stroke -->
+		  <use xlink:href="#s-text-gold"
+			   class="text-copy-stroke"></use>
+
+		  <!-- Group with clippath -->
+		  <g clip-path="url(#cp-text-gold)">
+			<!-- Content for filling text -->
+			<circle r="70%"
+					cx="300"
+					cy="150"
+					class="c-fill--color"
+					></circle>
+			<circle r="70%"
+					cx="300"
+					cy="150"
+					class="c-fill"
+					></circle>
+		  </g>
+		
 		</svg>
         <script src="scripts/main.js"></script>
         
