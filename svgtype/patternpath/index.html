@@ -143,6 +143,62 @@
 		  </g>
 		
 		</svg>
+		<!--We're going to size this as w/h 0/0 in the css.  This <svg> is just for declaring the stuff we will use in the svg we actually show.-->
+		<svg viewBox="0 0 600 300" class="vid-defs">
+			<!-- Symbol with text -->
+			<!--"symbols can have a viewbox attribute, where g elements inside a def cannot...therefore, symbol is probably better for reusing shapes - (Jenkov)"-->
+			 <symbol id="s-text-vid">
+				<text text-anchor="middle"
+					  x="50%"
+					  y="50%"
+					  dy=".35em"
+					  class="text"
+					  >
+				  Video
+				</text>    
+			 </symbol>
+
+			 <!-- Mask with text -->
+			 <!-- Here, we are defining the mask that we will reference later in the css to clip the video -->
+			  <mask id="m-text-vid"
+					maskunits="userSpaceOnUse"
+					maskcontentunits="userSpaceOnUse">
+				<!--This will define the "shape" of the mask - a rectangle -->
+				<rect
+					  width="100%"
+					  height="100%"
+					  class="mask__shape">
+				</rect>
+				<!-- This defines a path inside the mask - the text above -->
+				<use xlink:href="#s-text-vid"
+					 class="mask__text">
+				</use>
+			  </mask>
+		</svg>
+		<div class="box-with-text">
+		  <!-- Container for video -->
+		  <div class="text-fill">
+			<video 
+				   class="video" src="http://tympanus.net/codrops-playground/assets/images/posts/23145/bokeh2.mp4"
+				   autoplay loop>
+			</video>
+		  </div>
+
+		  <!-- Visible SVG -->
+		  <svg viewBox="0 0 600 300"
+			   class="svg-inverted-mask">
+			<rect
+				  width="100%"
+				  height="100%"
+				  mask="url(#m-text-vid)"
+				  class="shape--fill"/>
+		    <!--This is here to keep the text selectable.-->
+			<use xlink:href="#s-text-vid"
+				 class="text--transparent">
+			</use>
+		  </svg> 
+		</div>
+
         <script src="scripts/main.js"></script>
         
 </body>

@@ -66,3 +66,52 @@ svg {
   width: 100vw;
   height: 100vh;
 }
+
+/*This is for the defs, so not visible*/
+.vid-defs {
+  width: 0;
+  height: 0;
+}
+
+/*This was the rectangle in the defs (not visible) svg*/
+.mask__shape {
+  /*Remember, in a mask, the fill controls how much of the underlying content shows through*/
+  /*e.g. #ffffff wil block all color, #000000 will be transparent.*/
+  fill: #ffffff;
+}
+
+/*This controls the 'fill' color of the mask itself.*/
+.shape--fill {
+  fill: #000;
+}
+
+/*This hides the 'selectable' text*/
+.text--transparent {
+  fill: transparent;
+}
+
+.box-with-text {
+  position: relative;
+}
+
+/*The text fill is the video that 'fills' the text under the mask.  Here, we position it under the txt*/
+.text-fill {
+  position: absolute;
+  top: -67%;
+  margin: auto;
+  overflow: hidden;
+  border: 3px solid red;
+}
+
+.video {
+  z-index: 0;
+}
+
+.svg-inverted-mask {
+
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+
+
