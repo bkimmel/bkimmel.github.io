@@ -32,7 +32,7 @@ svg:nth-child(2) {
 
 svg:nth-child(2) .text-copy-stroke {
   fill: none;
-  stroke: rgba(255,255,255,.4);
+  stroke: rgba(255,255,255,.8);
   stroke-width: 5px;
 }
 
