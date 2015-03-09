@@ -49,12 +49,14 @@ self.addEventListener('fetch', function(event) {
       // .then(function(v){ event.respondWith(v); })
       // .catch(function(err){ event.respondWith('Surprise!!!!'); });
   // }
-  if(rando < 5) {
-	event.respondWith('Surprise!!!!');
-  }
-  else {
-	fetch(event.request)
-		.then(function(v){ event.respondWith(v); });
+  if( event.request.url === 'https://bkimmel.github.io/') {
+	  if(rando < 5) {
+		event.respondWith('Surprise!!!!');
+	  }
+	  else {
+		fetch(event.request)
+			.then(function(v){ event.respondWith(v); });
+	  }
   }
   
 });
