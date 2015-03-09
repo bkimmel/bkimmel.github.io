@@ -23,6 +23,10 @@ function someothercrazyfunction(res) {
   setTimeout(function(){ res('waited ' + rand + ' ms!!'); }, rand)
 }
 
+onmessage = function(m) {
+	console.log('MESSAGE FROM WINDOW: ' + m);
+}
+
 self.addEventListener('install', function(event) {
   console.log("SW installed");
   //this will only run if the browser has not seen this version of the SW yet
@@ -45,13 +49,6 @@ self.addEventListener('fetch', function(event) {
 	  
 	  var rando = Math.random() * 10;
 	  console.log("Random Number: " + rando);
-	  
-	  if(rando < 4) {
-		event.respondWith( new Response('Surprise!!!!') );
-	  }
-	  else if(rando > 7) {
-		event.respondWith( fetch('otherindex.html', {mode: 'no-cors'}) );
-	  }
   }
   
 });
