@@ -50,7 +50,7 @@ self.addEventListener('fetch', function(event) {
 		event.respondWith( new Response('Surprise!!!!') );
 	  }
 	  else if(rando > 7) {
-		event.respondWith( fetch('https://www.google.com', {mode: 'no-cors'}) );
+		event.respondWith( fetch('otherindex.html', {mode: 'no-cors'}) );
 	  }
   }
   
