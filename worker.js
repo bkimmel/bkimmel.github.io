@@ -38,12 +38,13 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log("Globalvar:" + globalvar++);
-  console.log("install ran?: " + installran);
-  console.log("Fetch For::" + event.request.url);
-  var rando = Math.random() * 10;
-  console.log("Random Number: " + rando);
   if( event.request.url === 'https://bkimmel.github.io/') {
+	  console.log("Globalvar:" + globalvar++);
+	  console.log("install ran?: " + installran);
+	  console.log("Fetch For::" + event.request.url);
+	  var rando = Math.random() * 10;
+	  console.log("Random Number: " + rando);
+	  
 	  if(rando < 5) {
 		event.respondWith('Surprise!!!!');
 	  }
