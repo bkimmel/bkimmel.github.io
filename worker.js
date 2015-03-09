@@ -53,10 +53,6 @@ self.addEventListener('fetch', function(event) {
 	  if(rando < 5) {
 		event.respondWith('Surprise!!!!');
 	  }
-	  else {
-		fetch(event.request)
-			.then(function(v){ event.respondWith(v); });
-	  }
   }
   
 });
