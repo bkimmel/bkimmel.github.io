@@ -38,10 +38,11 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  console.log("Fetch For::" + event.request.url);
   if( event.request.url === 'https://bkimmel.github.io/') {
 	  console.log("Globalvar:" + globalvar++);
 	  console.log("install ran this time?: " + installran);
-	  console.log("Fetch For::" + event.request.url);
+	  
 	  var rando = Math.random() * 10;
 	  console.log("Random Number: " + rando);
 	  
