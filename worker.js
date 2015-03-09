@@ -40,7 +40,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   if( event.request.url === 'https://bkimmel.github.io/') {
 	  console.log("Globalvar:" + globalvar++);
-	  console.log("install ran?: " + installran);
+	  console.log("install ran this time?: " + installran);
 	  console.log("Fetch For::" + event.request.url);
 	  var rando = Math.random() * 10;
 	  console.log("Random Number: " + rando);
@@ -49,7 +49,7 @@ self.addEventListener('fetch', function(event) {
 		event.respondWith( new Response('Surprise!!!!') );
 	  }
 	  else if(rando > 7) {
-		event.respondWith( fetch('http://www.google.com') );
+		event.respondWith( fetch('https://www.google.com') );
 	  }
   }
   
