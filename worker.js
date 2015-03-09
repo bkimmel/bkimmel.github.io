@@ -42,11 +42,19 @@ self.addEventListener('fetch', function(event) {
   console.log("install ran?: " + installran);
   console.log("Fetch For::" + event.request.url);
   var rando = Math.random() * 10;
-  if( event.request.url === 'https://bkimmel.github.io/') {
-    console.log("HTML Fetch::" + event.request.url);
-    //event.respondWith(rando < 3 ? fetch("/otherindex.html") : rando < 7 ? new Response("Hello world!" + Math.random()) : fetch(event.request) );
-    fetch(event.request)
-      .then(function(v){ event.respondWith(v); })
-      .catch(function(err){ event.respondWith('Bruce is a bitch!!!'); });
+  // if( event.request.url === 'https://bkimmel.github.io/') {
+    // console.log("HTML Fetch::" + event.request.url);
+    // //event.respondWith(rando < 3 ? fetch("/otherindex.html") : rando < 7 ? new Response("Hello world!" + Math.random()) : fetch(event.request) );
+    // fetch(event.request)
+      // .then(function(v){ event.respondWith(v); })
+      // .catch(function(err){ event.respondWith('Surprise!!!!'); });
+  // }
+  if(rando < 5) {
+	event.respondWith('Surprise!!!!');
   }
+  else {
+	fetch(event.request)
+		.then(function(v){ event.respondWith(v); });
+  }
+  
 });
