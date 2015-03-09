@@ -45,8 +45,11 @@ self.addEventListener('fetch', function(event) {
 	  var rando = Math.random() * 10;
 	  console.log("Random Number: " + rando);
 	  
-	  if(rando < 5) {
-		event.respondWith(new Response('Surprise!!!!'));
+	  if(rando < 4) {
+		event.respondWith( new Response('Surprise!!!!') );
+	  }
+	  else if(rando > 7) {
+		event.respondWith( fetch('http://www.google.com') );
 	  }
   }
   
