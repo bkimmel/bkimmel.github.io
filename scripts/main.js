@@ -6,7 +6,8 @@ document.querySelector('button').addEventListener('click', function(e){
 	navigator.serviceWorker.controller.postMessage('hello serviceworker')
 });
 
-var mysw = navigator.serviceWorker.register('/workerb.js', {
+var myswreg;
+navigator.serviceWorker.register('/workerb.js', {
   scope: '/'
 }).then(function(reg) {
   console.log('◕‿◕', reg);
