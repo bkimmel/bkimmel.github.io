@@ -23,8 +23,10 @@ function someothercrazyfunction(res) {
   setTimeout(function(){ res('waited ' + rand + ' ms!!'); }, rand)
 }
 
+var stateswitch = 0;
 onmessage = function(m) {
 	console.log('MESSAGE FROM WINDOW: ' + m);
+	stateswitch = !stateswitch;
 }
 
 self.addEventListener('install', function(event) {
@@ -47,8 +49,10 @@ self.addEventListener('fetch', function(event) {
 	  console.log("Globalvar:" + globalvar++);
 	  console.log("install ran this time?: " + installran);
 	  
-	  var rando = Math.random() * 10;
-	  console.log("Random Number: " + rando);
+	  if(stateswitch) {
+		event.respondWith(new Response('Switched State'));
+		stateswitch = !stateswitch;
+	  }
   }
   
 });
