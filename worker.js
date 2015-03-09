@@ -46,7 +46,7 @@ self.addEventListener('fetch', function(event) {
 	  console.log("Random Number: " + rando);
 	  
 	  if(rando < 5) {
-		event.respondWith('Surprise!!!!');
+		event.respondWith(new Response('Surprise!!!!'));
 	  }
   }
   
