@@ -24,10 +24,6 @@ function someothercrazyfunction(res) {
 }
 
 var stateswitch = 0;
-onmessage = function(m) {
-	console.log('MESSAGE FROM WINDOW: ' + m);
-	stateswitch = !stateswitch;
-}
 
 self.addEventListener('install', function(event) {
   console.log("SW installed");
@@ -41,6 +37,11 @@ self.addEventListener('activate', function(event) {
   var pr = new Prom();
   event.waitUntil(pr.promise.then(function(v){ console.log('stuff done at activation - resolved with:' + v); }));
   someothercrazyfunction(pr.res);
+});
+
+self.addEventListener('message', function handlemessage(ev){
+	console.log('MESSAGE FROM WINDOW: ' + m);
+	stateswitch = !stateswitch;
 });
 
 self.addEventListener('fetch', function(event) {
