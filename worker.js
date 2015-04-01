@@ -1,3 +1,5 @@
+//open chrome://serviceworker-internals to see servicworker logs, etc.
+
 // The SW will be shutdown when not in use to save memory,
 // be aware that any global state is likely to disappear
 
