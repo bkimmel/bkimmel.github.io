@@ -1,0 +1,34 @@
+function addStyleRule(css_sel, css_rule) {
+    var baseSheet = document.styleSheets[document.styleSheets.length - 1];
+    var idx = (baseSheet.cssRules && baseSheet.cssRules.length) || 0;
+
+    if(baseSheet && baseSheet.insertRule) {
+        return baseSheet.insertRule(css_sel + ' { ' + css_rule + ' }', idx);
+    }
+    else if (baseSheet && baseSheet.addRule) {
+        return baseSheet.addRule(css_sel, css_rule, idx);
+    }
+    return false;
+}
+
+var bounding = document.body.getBoundingClientRect();
+
+addStyleRule('.backfade', 'position: absolute; display: block; top: 0; left: 0; width: 100%; height: ' + (bounding.height || (bounding.bottom - bounding.top))  + 'px; background: rgba(0,0,0,.9); z-index: 2000;');
+addStyleRule('.workbox', 'display: inline-block; margin: 3em; background: rgba(255,255,255,.8); width: calc(100% - 6em);');
+addStyleRule('.workbox h2', 'font-size: 7em; color: black; border-bottom: 4px solid black; display: inline-block; margin: .5em; font-weight: bold; transition-property: transform; transition-duration: 333ms; transition-timing-function: ease-out; transform: translateX(-20em);');
+addStyleRule('.workbox h2.rotatein', 'transform: translateX(0em);');
+addStyleRule('.workbox h3', 'font-size: 4em; color: black; display: block; margin: 0em .8em .25em .8em; transition-property: all; transition-duration: 533ms; transition-timing-function: ease-out; transform: rotateX(90deg); opacity: 0;');
+addStyleRule('.workbox h3.rotatein', 'transform: rotateX(0deg); opacity: 1;');
+addStyleRule('.workbox h3 span', 'text-shadow: none; transition-property: all; transition-duration: 1533ms;');
+addStyleRule('.workbox h3.rotatein span', 'text-shadow: 1px 1px 1px gray, 2px 2px 1px black;');
+addStyleRule('.workbox p', 'font-size: 2.5em; margin: 1.47em;');
+addStyleRule('.workbox .frameholder', 'font-size: 2.5em; margin: 1.47em; width: calc(100% - 2.94em); text-align: center;');
+addStyleRule('.workbox .frameholder iframe', 'width: 80%; display: inline-block;');
+
+var backfade = $('<div class="backfade"></div>');
+$('body').append(backfade);
+var workbox = $('<div class="workbox"><h2>Not That We Would</h2><h3 class="spin1"><span class="client">Client:</span> McCormick Food</h3><h3 class="spin2">2012</h3><h3 class="spin3">Print, Radio</h3><p>Cake cheesecake gummies dessert liquorice gingerbread marzipan sesame snaps tootsie roll. Bear claw chocolate powder pie. Muffin chocolate tart powder bonbon gummi bears chocolate bar gummies muffin. Sweet roll pie muffin fruitcake chocolate gingerbread wafer. Icing cookie sesame snaps lollipop chocolate cake marshmallow. Jelly-o croissant jujubes chupa chups candy canes jujubes sweet bear claw.</p><div class="frameholder"><iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/141090095&amp;color=46666a&amp;auto_play=true&amp;hide_related=false&amp;show_artwork=false"></iframe></div></div>');
+backfade.append(workbox);
+setTimeout(function(){ workbox.find('h2,h3.spin1').addClass('rotatein'); }, 100);
+setTimeout(function(){ workbox.find('h3.spin2').addClass('rotatein'); }, 200);
+setTimeout(function(){ workbox.find('h3.spin3').addClass('rotatein'); }, 300);
