@@ -1,0 +1,20 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>iframe</title>
+        <meta name="description" content="">
+    </head>
+    <body>
+		<h2>I am the iframes</h2>
+		<h3></h3>
+	</body>
+	<script>
+		document.querySelector('h2').addEventListener('click', function(){
+			console.log('hi');
+			parent.postMessage('hi from parent.postMessage', '*');
+			window.postMessage('hi from window.postMessage', '*');
+		});
+		
+	</script>
+</html>
