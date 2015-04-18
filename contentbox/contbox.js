@@ -1,13 +1,14 @@
 var selectedindex = 0;
 var works = {
-    title: 'Not That We Would',
+    heading: 'Not That We Would',
     client: 'McCormick Food',
     year: '2012',
-    media: 'Print, Radio',
+    media: 'Print &amp; Radio',
     blurb: 'Cake cheesecake gummies dessert liquorice gingerbread marzipan sesame snaps tootsie roll. Bear claw chocolate powder pie. Muffin chocolate tart powder bonbon gummi bears chocolate bar gummies muffin. Sweet roll pie muffin fruitcake chocolate gingerbread wafer. Icing cookie sesame snaps lollipop chocolate cake marshmallow. Jelly-o croissant jujubes chupa chups candy canes jujubes sweet bear claw.',
     frames: [
         '<iframe style="height: 20vh;" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/141090095&amp;color=46666a&amp;auto_play=true&amp;hide_related=false&amp;show_artwork=false"></iframe>',
-        '<iframe style="height: 40vh;" frameborder="0" src="http://player.vimeo.com/video/68606971" name="1429337049613" class="cboxIframe" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>'
+        '<iframe style="height: 40vh;" frameborder="0" src="http://player.vimeo.com/video/68606971" name="1429337049613" class="cboxIframe" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>',
+        '<iframe class="tallright" style="height: 40vh;" frameborder="0" src="http://player.vimeo.com/video/68606971" name="1429337049613" class="cboxIframe" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>'
     ]
 }
 
@@ -30,9 +31,18 @@ function showcontentbox(works) {
             return 0;
         }
         selectedindex = thisidx;
-        $workbox.find('iframe').replaceWith( works.frames[thisidx] );
-        $('.selected').removeClass('selected');
-        $workbox.find('ul li:eq(' + thisidx + ')').addClass('selected');
+        if(!works.frames[thisidx].match(/tallright/)) {
+            $workbox.removeClass('tallbox');
+            $workbox.find('iframe').replaceWith( works.frames[thisidx] );
+            $('.selected').removeClass('selected');
+            $workbox.find('ul li:eq(' + thisidx + ')').addClass('selected');
+        }
+        else {
+            $workbox.addClass('tallbox');
+            $workbox.find('iframe').replaceWith( works.frames[thisidx] );
+            $('.selected').removeClass('selected');
+            $workbox.find('ul li:eq(' + thisidx + ')').addClass('selected');
+        }
     });
 
     setTimeout(function(){ $workbox.find('h2,h3.spin1').addClass('rotatein'); }, 100);
