@@ -1,0 +1,40 @@
+<!-- https://bkimmel.github.io/ -->
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>sample</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" type="text/css" href="contentboxes.css" />
+    </head>
+    
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="main">
+            <h1>Main</h1>
+        </div>        
+	</body>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://rawgit.com/lodash/lodash/3.0.1/lodash.min.js"></script>
+	<script type="text/template" id="conttemp">
+		<div class="backfade">
+		  <div class="workbox">
+			<h2><%= title %></h2>
+			<h3 class="spin1"><span class="client">Client:</span> <%= client %></h3>
+			<h3 class="spin2"><%= year %></h3><h3 class="spin3"><%= media %></h3>
+			<p><%= blurb %></p>
+			<div class="frameholder">
+			<%= frames && frames[0] %>
+			</div>
+		    <ul><% frames.length >= 2 && _.forEach(frames, function(v,i) { %><li data-n="<%- i %>"></li><% }); %></ul>
+		  </div>
+
+		</div>
+    </script>
+    <script src="contbox.js"></script>
+</html>
