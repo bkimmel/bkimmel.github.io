@@ -7,7 +7,7 @@ document.querySelector('button').addEventListener('click', function(e){
 });
 
 var myswreg;
-navigator.serviceWorker.register('../worker.js', {
+navigator.serviceWorker.register('/serviceworker/worker.js', {
   scope: '/serviceworker/'
 }).then(function(reg) {
   console.log('◕‿◕', reg);
