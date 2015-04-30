@@ -1,5 +1,3 @@
-//open chrome://serviceworker-internals to see servicworker logs, etc.
-
 // The SW will be shutdown when not in use to save memory,
 // be aware that any global state is likely to disappear
 
@@ -7,9 +5,11 @@
 console.log("SW startup");
 
 var globalvar = 0;
-//globalvar stays in scope through the life of the worker
+//globalvar stays in scope through the life of the worker - which may be very short.
+//the browser will start and stop the ServiceWorker at will - which will blow away global state
 
 var installran = "no";
+//again, this var in global scope will be blown away when the browser restarts the worker.
 
 function Prom() {
     var ret = this;
@@ -25,6 +25,8 @@ function someothercrazyfunction(res) {
   setTimeout(function(){ res('waited ' + rand + ' ms!!'); }, rand)
 }
 
+var stateswitch = 0;
+
 self.addEventListener('install', function(event) {
   console.log("SW installed");
   //this will only run if the browser has not seen this version of the SW yet
@@ -35,8 +37,16 @@ self.addEventListener('activate', function(event) {
   console.log("SW activated");
   //this will run when the old version is disposed of and this one is ready to rock
   var pr = new Prom();
+  //You can pass a promise to event.waitUntil if you want to prolong this part of the lifecycle artifically.  If the promise fails,
+  //the serviceworker will be garbagecollected.  Otherwise, if the promise is fulfilled, this stage of the lifecycle will
+  //be complete.
   event.waitUntil(pr.promise.then(function(v){ console.log('stuff done at activation - resolved with:' + v); }));
   someothercrazyfunction(pr.res);
+});
+
+self.addEventListener('message', function handlemessage(ev){
+	console.log('MESSAGE FROM WINDOW: ' + m);
+	stateswitch = !stateswitch;
 });
 
 self.addEventListener('fetch', function(event) {
@@ -45,14 +55,9 @@ self.addEventListener('fetch', function(event) {
 	  console.log("Globalvar:" + globalvar++);
 	  console.log("install ran this time?: " + installran);
 	  
-	  var rando = Math.random() * 10;
-	  console.log("Random Number: " + rando);
-	  
-	  if(rando < 4) {
-		event.respondWith( new Response('Surprise!!!!') );
-	  }
-	  else if(rando > 7) {
-		event.respondWith( fetch('otherindex.html', {mode: 'no-cors'}) );
+	  if(stateswitch) {
+		event.respondWith(new Response('Switched State'));
+		stateswitch = !stateswitch;
 	  }
   }
   
