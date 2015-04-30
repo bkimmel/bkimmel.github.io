@@ -28,7 +28,7 @@ function someothercrazyfunction(res) {
 var stateswitch = 0;
 
 self.addEventListener('install', function(event) {
-  console.log("SW installed");
+  console.log("SW Alpha installed");
   //this will only run if the browser has not seen this version of the SW yet
   installran = "yes";
 });
