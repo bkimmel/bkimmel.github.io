@@ -8,7 +8,7 @@ document.querySelector('button').addEventListener('click', function(e){
 
 var myswreg;
 navigator.serviceWorker.register('../worker.js', {
-  scope: '/'
+  scope: '/serviceworker/'
 }).then(function(reg) {
   console.log('◕‿◕', reg);
 }, function(err) {
