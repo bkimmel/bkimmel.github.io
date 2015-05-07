@@ -62,6 +62,9 @@ function sendToIDs(regids, cb) {
 	post_req.end();
 }
 
-sendToIDs(['APA91bGLhTPNprOR7ok3HTqoqeklVxO-4FRlLRv667tiM0sgwzTDH7LqmIVd6WxQUgoOvW5UrXfQfuqiQf0udZny4Zy8XKLM1XMlaURywqkhfxrskkbn2Cn6Pz3VB5BYFoPPQoHM0pE1mOye6C1QbpyUGWDXIt5SmGFPXHobaoKj_anDPZrumF8'],
-  console.log(JSON.stringify(resp));
+
+sendToIDs(['APA91bG2k_DrnKm2aacWLjbGjIm4VOdMzPug0ay2TpZZYWoZNiRwB_xC3FLsGXHNXLUxSZurLbvNArgk_-OO88N8ykHKTCFwJf8HBwPzvK3FbYYKYN7nXhPo66F3Ksgm3oWc4RDa2K1e2VoNVgWdPmug2f14qvMWjlkN71nYPiTlCpE8C8Oq0M4'], 
+function(err, resp) {
+  console.log( JSON.stringify(resp) );
 });
+
