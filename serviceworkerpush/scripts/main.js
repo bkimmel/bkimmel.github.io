@@ -1,6 +1,7 @@
 console.log('\'Allo \'Allo!');
 
 var isPushEnabled = false;
+var pushButton = document.querySelector('.pushsub');  
 
 // Once the service worker is registered set the initial state  
 function initialisePushState(reg) {  
@@ -32,7 +33,7 @@ function initialisePushState(reg) {
       .then(function(subscription) {  
         // Enable any UI which subscribes / unsubscribes from  
         // push messages.  
-        var pushButton = document.querySelector('.pushsub');  
+        
         pushButton.disabled = false;
 
         if (!subscription) {  
@@ -55,7 +56,46 @@ function initialisePushState(reg) {
   });  
 }
 
-var myswreg;
+function pushSubscribe() {  
+  // Disable the button so it can't be changed while  
+  // we process the permission request  
+  pushButton.disabled = true;
+
+  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
+    serviceWorkerRegistration.pushManager.subscribe()  
+      .then(function(subscription) {  
+        // The subscription was successful  
+        isPushEnabled = true;  
+        pushButton.textContent = 'Disable Push Messages';  
+        pushButton.disabled = false;      
+          
+        // TODO: Send the subscription.subscriptionId and   
+        // subscription.endpoint to your server  
+        // and save it to send a push message at a later date
+        console.log(subscription.subscriptionId + '###' + subscription.endpoint);
+        return true;   
+        //return sendSubscriptionToServer(subscription);  
+      })  
+      .catch(function(e) {  
+        if (Notification.permission === 'denied') {  
+          // The user denied the notification permission which  
+          // means we failed to subscribe and the user will need  
+          // to manually change the notification permission to  
+          // subscribe to push messages  
+          console.warn('Permission for Notifications was denied');  
+          pushButton.disabled = true;  
+        } else {  
+          // A problem occurred with the subscription; common reasons  
+          // include network errors, and lacking gcm_sender_id and/or  
+          // gcm_user_visible_only in the manifest.  
+          console.error('Unable to subscribe to push.', e);  
+          pushButton.disabled = false;  
+          pushButton.textContent = 'Enable Push Messages';  
+        }  
+      });  
+  });  
+}
+
 navigator.serviceWorker.register('/serviceworkerpush/worker.js', {
   scope: '/serviceworkerpush/'
 }).then(function(reg) {
