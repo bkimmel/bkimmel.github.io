@@ -43,7 +43,8 @@ function initialisePushState(reg) {
         }
         
         // Keep your server in sync with the latest subscriptionId
-        sendSubscriptionToServer(subscription);
+        console.log(subscription.subscriptionId);
+        //sendSubscriptionToServer(subscription);
 
         // Set your UI to show they have subscribed for  
         // push messages  
