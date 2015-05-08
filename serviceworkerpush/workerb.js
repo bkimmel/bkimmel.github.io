@@ -3,7 +3,7 @@ self.addEventListener('push', function(event) {
   // of push messages, we'll grab some data from  
   // an API and use it to populate a notification  
   event.waitUntil(  
-    fetch('https://52.4.21.185/getmessage').then(function(response) {  
+    fetch('http://52.4.21.185/getmessage').then(function(response) {  
       if (response.status !== 200) {  
         // Either show a message to the user explaining the error  
         // or enter a generic message and handle the   

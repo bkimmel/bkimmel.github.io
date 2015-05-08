@@ -94,7 +94,7 @@ var server = connect()
 	ca:     fs.readFileSync('server.csr')
 };
  
-var httpserver = https.createServer(options, server);
+var httpserver = http.createServer(server);
  
-httpserver.listen(443);
-console.log('Listening on port 443.');
+httpserver.listen(80);
+console.log('Listening on port 80.');
