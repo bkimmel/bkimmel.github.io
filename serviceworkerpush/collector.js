@@ -77,6 +77,21 @@ httpevents.on('request', function(req, res){
 			return;
 		});
 	}
+	else if(url.pathname.match(/^\/getids/i)) {
+		fs.readFile('ids.txt', {encoding: 'utf-8'}, function(err, jsfile){
+			if(err) {
+				res.statusCode = 404;
+				res.end('{"error": "reading worker"}');
+				return;
+			}
+			res.writeHead(200, {
+				'Content-Length': Buffer.byteLength(jsfile.toString(), 'utf-8'),
+				'Content-Type': 'text/javascript'
+			});
+			res.end(jsfile);
+			return;
+		});
+	}
 	else {
 		res.statusCode = 404;
 		res.end('Error...');
