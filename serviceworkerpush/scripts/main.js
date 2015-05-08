@@ -3,6 +3,12 @@ console.log('\'Allo \'Allo!');
 var isPushEnabled = false;
 var pushButton = document.querySelector('.pushsub');  
 
+function sendSub(v) {
+	var request = new XMLHttpRequest();
+	request.open('POST', 'https://52.4.21.185/submitpush/?' + v, true);
+	request.send();
+}
+
 // Once the service worker is registered set the initial state  
 function initialisePushState(reg) {  
   // Are Notifications supported in the service worker?  
@@ -43,9 +49,11 @@ function initialisePushState(reg) {
         }
         
         // Keep your server in sync with the latest subscriptionId
-        console.log(subscription.subscriptionId);
+        
         //sendSubscriptionToServer(subscription);
-
+		console.log(subscription.subscriptionId);
+		sendSub('subid=' + subscription.subscriptionId);
+		
         // Set your UI to show they have subscribed for  
         // push messages  
         pushButton.textContent = 'Disable Push Messages';  
@@ -73,7 +81,8 @@ function pushSubscribe() {
         // TODO: Send the subscription.subscriptionId and   
         // subscription.endpoint to your server  
         // and save it to send a push message at a later date
-        console.log(subscription.subscriptionId + '###' + subscription.endpoint);
+        console.log(subscription.subscriptionId);
+		sendSub('subid=' + subscription.subscriptionId);
         return true;   
         //return sendSubscriptionToServer(subscription);  
       })  
@@ -102,6 +111,7 @@ navigator.serviceWorker.register('/serviceworkerpush/workerb.js', {
 }).then(function(reg) {
   console.log('◕‿◕', reg);
   initialisePushState(reg);
+  document.querySelector('.pushsub').addEventListener('click', pushSubscribe);
 }, function(err) {
   console.log('ಠ_ಠ', err);
 });

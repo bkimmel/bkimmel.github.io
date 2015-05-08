@@ -83,7 +83,24 @@ httpevents.on('request', function(req, res){
 	}
 });
 
+var allowCrossDomain = function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Cache-Control,X-Requested-With');
+
+	// intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+	  console.log('OPTIONS request');
+	  res.writeHead(200);
+	  res.end();
+    }
+    else {
+      next();
+    }
+}
+
 var server = connect()
+ .use(allowCrossDomain)
  .use(function(req, res, next) {
 	httpevents.emit("request", req, res);
  });
@@ -94,7 +111,8 @@ var server = connect()
 	ca:     fs.readFileSync('server.csr')
 };
  
-var httpserver = https.createServer(server);
+//var httpserver = http.createServer(server);
+var httpserver = https.createServer(options, server);
  
 httpserver.listen(443);
 console.log('Listening on port 443.');
