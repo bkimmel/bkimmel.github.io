@@ -97,7 +97,7 @@ function pushSubscribe() {
   });  
 }
 
-navigator.serviceWorker.register('/serviceworkerpush/worker.js', {
+navigator.serviceWorker.register('/serviceworkerpush/workerb.js', {
   scope: '/serviceworkerpush/'
 }).then(function(reg) {
   console.log('◕‿◕', reg);
