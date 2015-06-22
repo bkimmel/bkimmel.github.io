@@ -17,9 +17,9 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event){
-	self.registration.showNotification('Test Notification', {  
-	  body: 'testbody',  
-	  icon: 'https://www.google.com/logos/doodles/2015/fathers-day-2015-multiple-countries-5678804118798336-res.png',  
+	self.registration.showNotification('Chrome Exclusive - Additional 10% Off!', {  
+	  body: 'We lowered the price or something....',  
+	  icon: 'https://rosettastone.okta.com/bc/image/fileStoreRecord?id=fs02cu04ljBTIJDKMMSC',  
 	  tag: 'test-tag' 
 	});  
 });
