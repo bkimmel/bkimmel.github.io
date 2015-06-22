@@ -5,7 +5,7 @@ var prom = new Promise(function(_res, rej){
 timeup = setTimeout(function(){ res(); res = function(){}; }, 10000);
 
 self.addEventListener('message', function handlemessage(ev){
-	console.log('MESSAGE FROM WINDOW: ' + m);
+	console.log('MESSAGE FROM WINDOW: ' + ev);
 	clearTimeout(timeup);
 	timeup = setTimeout(function(){ res(); res = function(){}; }, 10000);
 });

@@ -1,7 +1,8 @@
 console.log('Main: ');
 
 function resetTimer() {
-	navigator.serviceWorker.controller.postMessage('hello serviceworker')
+	//navigator.serviceWorker.controller.postMessage('hello serviceworker')
+	navigator.serviceWorker.ready.then(function(a){ a.active && a.active.postMessage('reset') })
 }
 
 navigator.serviceWorker.register('/swtest_notifications/noteworker.js', {
