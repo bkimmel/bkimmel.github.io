@@ -2,12 +2,12 @@ var timeup, res;
 var prom = new Promise(function(_res, rej){
 	res = _res;
 });
-timeup = setTimeout(function(){ res(); res = function(){}; }, 10000);
+timeup = setTimeout(function(){ res(); res = function(){}; }, 20000);
 
 self.addEventListener('message', function handlemessage(ev){
 	console.log('MESSAGE FROM WINDOW: ' + ev);
 	clearTimeout(timeup);
-	timeup = setTimeout(function(){ res(); res = function(){}; }, 10000);
+	timeup = setTimeout(function(){ res(); res = function(){}; }, 20000);
 });
 
 self.addEventListener('install', function(event) {
