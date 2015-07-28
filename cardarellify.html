@@ -1,0 +1,114 @@
+<!-- https://bkimmel.github.io/ -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Cardarellify Everything</title>
+        <meta name="description" content="Sample page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+			h1 {
+				text-align: center;
+			}
+			svg {
+				display: block;
+				width: 50%;
+				height: 40vh;
+				outline: 1px solid red;
+				margin: 20px auto;
+			}
+			
+			svg rect {
+				fill: #00FF00;
+				stroke: red;
+				stroke-width: 5px;
+			}
+			
+			svg circle {
+				fill: #00FF00;
+				stroke: red;
+				stroke-width: 5px;
+			}
+			
+			svg text {
+				text-anchor: middle;
+			}
+			svg text.display {
+				fill: #00FF00;
+				stroke: #00FF00;
+				stroke-width: 2px;
+				font-family: Helvetica, sans-serif;
+				font-kerning: normal;
+				font-size: 1.3em;
+				
+			}
+			
+			.cardarellify {
+				filter: url(#fucker);
+			}
+
+        </style>
+        
+    </head>
+    <body>
+    	<h1>Replace everything in the #00FF00 channel of your SVGs with Cardarella</h1>
+        <svg class="normal" viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<defs>
+				<filter id="fucker">
+					 <feColorMatrix type="matrix" values=
+					  "0 0 0 0 0,
+					   0 0 0 0 0,
+					   0 0 0 0 0,
+					   0 1 0 0 -.9"
+					   in="SourceGraphic" result="GREENWASH" />
+					   <fecomponenttransfer in="GREENWASH" result="BLACKWASH" >
+							<fefunca type="linear" slope="255" intercept="0" />
+						</fecomponenttransfer>
+					   <feimage result="PIC" width="5" height="5" preserveAspectRatio="xMidYMid slice" edgeMode="duplicate" xlink:href="https://pbs.twimg.com/profile_images/378800000553511645/21a9348ff9f9ff11f9278695b8afa76d_normal.jpeg" />
+					   <fetile in="PIC" result="PICTILE" />
+					   <fecomposite operator="in" k1="0" k2="1" k3="1" k4="0" in2="BLACKWASH" in="PICTILE" result="COMPOSITE" />
+					   <femerge>
+							<femergenode in="SourceGraphic" />
+							<femergenode in="BLACKWASH" />
+							<femergenode in="COMPOSITE" />
+					   </femerge>
+						<!--
+						-->
+        		</filter>
+        	</defs>
+			<text x="50" y="20">Normal</text>
+        	<circle cx="50" cy="50" r="20"  />
+			
+        </svg>
+       <svg viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<text x="50" y="20">Cardarellified</text>
+        	<circle class="cardarellify" cx="50" cy="50" r="20"  />
+        </svg>
+		<svg viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+			<defs>
+				<radialGradient id="greengrad"
+				   fx="50%" fy="50%" r="65%"
+				   spreadMethod="pad"
+				   gradientUnits=" objectBoundingBox">
+				  <stop offset="0%"   stop-color="#00ff00" stop-opacity="1"/>
+				  <stop offset="40%"   stop-color="#00ff00" stop-opacity="1"/>
+				  <stop offset="100%" stop-color="#000000" stop-opacity="1" />
+				</radialGradient>
+			</defs>
+        	<text x="50" y="20">Normal</text>
+        	<circle cx="50" cy="50" r="20" style="fill: url(#greengrad)" />
+        </svg>
+		<svg viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<text x="50" y="20">Cardarellified</text>
+        	<circle class="cardarellify" cx="50" cy="50" r="20" style="fill: url(#greengrad)" />
+        </svg>
+        <svg viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<text class="display"  x="50" y="30">Hey</text>
+        	<text class="display" x="50" y="60">Fuckers</text>
+        </svg>
+        <svg viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<text class="display cardarellify"  x="50" y="30">Hey</text>
+        	<text class="display cardarellify" x="50" y="60">Fuckers</text>
+        </svg>
+	</body>
+</html>
