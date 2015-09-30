@@ -3,5 +3,10 @@
 		"en": "en",
 		"de": "de",
 		"es": "es"
+	},
+	"greeting": {
+		"en": "It's a new day for learning.",
+		"de": "Hallo Welt!!!!",
+		"es": "Hola Mundo!!!"
 	}
 }	
