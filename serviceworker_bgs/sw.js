@@ -3,7 +3,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('sync', function(event) {
-  var request = indexedDB.open("MyTestDatabase",10);
+  var request = indexedDB.open("MyTestDatabase",11);
   request.onsuccess = function(event) {
     var db = event.target.result;
     var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();

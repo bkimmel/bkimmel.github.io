@@ -12,6 +12,14 @@
   <button class="register">Register background sync</button>
   <div class="log"></div>
   <script>
+    var request = indexedDB.open("MyTestDatabase",11);
+    request.onupgradeneeded = function(event) {
+        var db = event.target.result;
+        var objectStore = db.createObjectStore("pageloads", { keyPath: "time" });
+        db.transaction("pageloads", "readwrite").objectStore("pageloads").add({time: Date.now()});
+    };
+  </script>
+  <script>
     var logEl = document.querySelector('.log');
     function log(msg) {
       var p = document.createElement('p');
@@ -54,12 +62,7 @@
     };
 
 
-    var request = indexedDB.open("MyTestDatabase",10);
-    request.onupgradeneeded = function(event) {
-        var db = event.target.result;
-        var objectStore = db.createObjectStore("pageloads", { keyPath: "time" });
-        db.transaction("pageloads", "readwrite").objectStore("pageloads").add({time: Date.now()});
-    };
+    
 
   </script>
 </body>
