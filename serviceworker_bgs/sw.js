@@ -3,5 +3,13 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('sync', function(event) {
-  self.registration.showNotification("Sync event fired!");
+  var request = indexedDB.open("MyTestDatabase",10);
+  request.onsuccess = function(event) {
+    var db = event.target.result;
+    var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
+    scanner.onsuccess = function(evt){
+        var cursor = evt.target.result;
+        self.registration.showNotification(JSON.stringify(cursor.value));
+    }
+  }
 });
