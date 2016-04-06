@@ -5,7 +5,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('sync', function(syncevent) {
   console.info('sync activated');
   syncevent.waitUntil(new Promise(function(res, rej){
-    var request = indexedDB.open("MyTestDatabase",12);
+    var request = indexedDB.open("MyTestDatabaseb",12);
     console.info('sync waiting');
     request.onsuccess = function(event) {
       var db = event.target.result;
