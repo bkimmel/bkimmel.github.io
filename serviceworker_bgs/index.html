@@ -18,7 +18,9 @@
 	request.onupgradeneeded = function(event) {
 		var db = event.target.result;
 		var objectStore = db.createObjectStore("pageloads", { keyPath: "visit_time" });
-		db.transaction("pageloads", "readwrite").objectStore("pageloads").add({"visit_time": visitTime, "current_time": Date.now()});
+		objectStore.transaction.oncomplete = function(){
+			db.transaction("pageloads", "readwrite").objectStore("pageloads").add({"visit_time": visitTime, "current_time": Date.now()});
+		};
 	};
 
 	request.onsuccess = function(event) {
