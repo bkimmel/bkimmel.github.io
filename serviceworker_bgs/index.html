@@ -62,6 +62,7 @@
 		console.info('reading time...');
 		var readtrans = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
 		readtrans.onsuccess = function(evt){
+		  debugger;
 		  console.info('%o', evt.target.result.value);
 		}
 	  }, 6000)
