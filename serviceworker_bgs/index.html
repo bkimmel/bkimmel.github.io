@@ -52,7 +52,7 @@
 			//debugger;
 			var data = evt.target.result;
 			data.value["current_time"] = Date.now().toString();
-			debugger;
+			//debugger;
 			//Update: will have same key so will overwrite.  No need to listen for success...
 			var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(data.value)
 		  };
@@ -62,7 +62,7 @@
 		console.info('reading time...');
 		var readtrans = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
 		readtrans.onsuccess = function(evt){
-		  debugger;
+		  //debugger;
 		  console.info('%o', evt.target.result.value);
 		}
 	  }, 6000)
