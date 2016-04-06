@@ -13,14 +13,56 @@
   <div class="log"></div>
   <script>
     var request = indexedDB.open("MyTestDatabase",11);
-    request.onupgradeneeded = function(event) {
-        var db = event.target.result;
-        var objectStore = db.createObjectStore("pageloads", { keyPath: "time" });
-    };
-    request.onsuccess = function(event) {
-      var db = event.target.result;
-       db.transaction("pageloads", "readwrite").objectStore("pageloads").add({time: Date.now()});
-    }
+	var visitTime = Date.now();
+
+	request.onupgradeneeded = function(event) {
+		var db = event.target.result;
+		var objectStore = db.createObjectStore("pageloads", { keyPath: "visit_time" });
+		db.transaction("pageloads", "readwrite").objectStore("pageloads").add({"visit_time": visitTime, "current_time": Date.now()});
+	};
+
+	request.onsuccess = function(event) {
+	  var db = event.target.result;
+	  
+
+	  var updatecurrenttime = setInterval(function(){
+		  console.info('updating time...');
+	//       var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
+	//       console.info('Scanning all entries:');
+	//       var cursor;
+	//       scanner.onsuccess = function(evt){
+	//         cursor = evt.target.result;
+	//         //debugger;
+	//         if (cursor) {
+	//           console.log(JSON.stringify(cursor.value));
+	//           cursor.continue();
+	//         }
+	//         else {
+	//           console.info("No more entries!");
+	//           //assign new time to last visit entry
+	//           var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(cursor)
+	//         }
+	//       }
+
+		  
+		  var req = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
+		  req.onsuccess = function(evt) {
+			//debugger;
+			var data = evt.target.result;
+			data["current_time"] = Date.now();
+			//Update: will have same key so will overwrite.  No need to listen for success...
+			var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(data)
+		  };
+	  }, 5000);
+
+	  var readcurrenttime = setInterval(function(){
+		console.info('reading time...');
+		var readtrans = db.transaction(['pageloads']).objectStore('pageloads').get(visitTime);
+		readtrans.onsuccess = function(evt){
+		  console.info('%o', evt.target.result);
+		}
+	  }, 6000)
+	}
   </script>
   <script>
     var logEl = document.querySelector('.log');
