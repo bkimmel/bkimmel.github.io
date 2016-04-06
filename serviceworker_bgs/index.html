@@ -54,7 +54,7 @@
 			data["current_time"] = Date.now().toString();
 			debugger;
 			//Update: will have same key so will overwrite.  No need to listen for success...
-			var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(data)
+			var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(data.value)
 		  };
 	  }, 5000);
 
