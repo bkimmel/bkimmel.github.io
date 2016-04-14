@@ -13,7 +13,7 @@ self.addEventListener('sync', function(syncevent) {
       scanner.onsuccess = function(evt){
           var cursor = evt.target.result;
           console.info('scan success');
-          self.registration.showNotification(Number(new Date()) - Number((new Date()).setTime(+cursor.value.current_time)));
+          self.registration.showNotification(Number(new Date()) - cursor.value.current_time));
 		  
           res();
           /*var i = setInterval(function(){
