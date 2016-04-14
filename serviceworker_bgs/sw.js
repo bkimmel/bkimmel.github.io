@@ -17,12 +17,14 @@ self.addEventListener('sync', function(syncevent) {
 			  console.info('scan success');
 			  
 			  if( (new Date()) - (+cursor.value.current_time) >= 30000 ) {
-				console.log('reset');
-				setTimeout(doit, 3000);
-			  }
-			  else {
+				
+				
 				self.registration.showNotification("Got it?");
 				res();
+			  }
+			  else {
+				console.log('reset');
+				setTimeout(doit, 3000);
 			  }
 			  
 			  /*var i = setInterval(function(){
