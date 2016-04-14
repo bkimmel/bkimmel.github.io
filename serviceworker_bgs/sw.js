@@ -9,23 +9,36 @@ self.addEventListener('sync', function(syncevent) {
     console.info('sync waiting');
     request.onsuccess = function(event) {
       var db = event.target.result;
-      var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
-      scanner.onsuccess = function(evt){
-          var cursor = evt.target.result;
-          console.info('scan success');
-          self.registration.showNotification( Number(new Date()) - (+cursor.value.current_time));
-		  
-          res();
-          /*var i = setInterval(function(){
-            var elapsed = new Date() - (new Date()).setTime( cursor.value );
-            if(elapsed >= 20000) {
-              self.registration.showNotification('20 seconds');
-              i = null;
-              res('done');
-            }
-          }, 10000);
-          */
-      }
+      
+	  (function doit() {
+		  var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
+		  scanner.onsuccess = function(evt){
+			  var cursor = evt.target.result;
+			  console.info('scan success');
+			  
+			  if( (new Date()) - (+cursor.value.current_time) >= 30000 ) {
+				console.log('reset');
+				setTimeout(doit, 3000);
+			  }
+			  else {
+				self.registration.showNotification("Got it?");
+				res();
+			  }
+			  
+			  /*var i = setInterval(function(){
+				var elapsed = new Date() - (new Date()).setTime( cursor.value );
+				if(elapsed >= 20000) {
+				  self.registration.showNotification('20 seconds');
+				  i = null;
+				  res('done');
+				}
+			  }, 10000);
+			  */
+		  }
+	  
+	  })();
+	  
+	  
     }
   }))
 });
