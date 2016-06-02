@@ -29,23 +29,6 @@
 
 	  var updatecurrenttime = setInterval(function(){
 		  console.info('updating time...');
-	//       var scanner = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
-	//       console.info('Scanning all entries:');
-	//       var cursor;
-	//       scanner.onsuccess = function(evt){
-	//         cursor = evt.target.result;
-	//         //debugger;
-	//         if (cursor) {
-	//           console.log(JSON.stringify(cursor.value));
-	//           cursor.continue();
-	//         }
-	//         else {
-	//           console.info("No more entries!");
-	//           //assign new time to last visit entry
-	//           var updatetime = db.transaction(['pageloads'],'readwrite').objectStore("pageloads").put(cursor)
-	//         }
-	//       }
-
 		  
 		  var req = db.transaction(['pageloads']).objectStore('pageloads').openCursor();
 		  req.onsuccess = function(evt) {

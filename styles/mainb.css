@@ -1,0 +1,33 @@
+body {
+    background-color: hsla(120,20%,20%,1);
+    padding: 0;
+    margin: 0;
+}
+svg {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    font-size: 1.7em;
+    
+    border-bottom: 3px solid oldlace;
+    font-family: "Times";
+}
+
+svg text tspan {
+    fill: url("#poplar");
+}
+
+.two {
+    font-family: "Helvetica";
+}
+.two tspan {
+    fill: url("#poplar2");
+}
+
+.three {
+    font-family: "Verdana";
+}
+.three tspan {
+    fill: black;
+}
