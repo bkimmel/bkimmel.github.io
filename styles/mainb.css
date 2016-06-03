@@ -29,5 +29,5 @@ svg text tspan {
     font-family: "Verdana";
 }
 .three tspan {
-    fill: black;
+    fill: url("#userpattern");
 }

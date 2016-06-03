@@ -31,15 +31,32 @@
 					<rect x="0" y=".61" width="1.0" height=".6" fill="hsla(54,90%,55%,1)" />
 				</pattern>
 			</defs>
-			<text x="50" y="50" text-anchor="middle" text-rendering="optimizeLegibility"><tspan>Order</tspan></text>
-			<circle cx="26" cy="64" r="10" fill="url(#poplar2)" stroke="url(#poplar)" stroke-width="1"/>
+			<text x="50" y="70" text-anchor="middle" text-rendering="optimizeLegibility"><tspan>Order</tspan></text>
+			<circle cx="50" cy="18" r="10" fill="url(#poplar2)" />
+			<circle cx="50" cy="18" r="12" fill="transparent" stroke="url(#poplar)" />
 	    </svg>
 	     <svg class="three" viewbox="0 0 100 100">
 			<title xml:lang="en">Verdana</title>
 			<defs>
-				
+				<linearGradient id="acq" x1="0" y1="0" x2="1" y2=".5" >
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="0%"/>
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="20%"/>
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="0" offset="60%"/>
+				</linearGradient>
+				<linearGradient id="acq2" x1="0" y1="0" x2="1" y2="1" >
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="0%"/>
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="39%"/>
+					<stop stop-color="hsla(119,80%,40%,.7)" stop-opacity="1" offset="40%"/>
+					<stop stop-color="hsla(119,80%,40%,.7)" stop-opacity="1" offset="80%"/>
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="81%"/>
+					<stop stop-color="hsla(54,90%,55%,1)" stop-opacity="1" offset="100%"/>
+				</linearGradient>
+				<pattern id="userpattern" x="-30" width="170" height="100" patternUnits="userSpaceOnUse" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+					<rect x="0" y="0" width="1" height="1" fill="url(#acq2)" />
+					<rect x="0" y=".41" width="1" height=".6" fill="url(#acq)" />
+				</pattern>
 			</defs>
-			<text x="50" y="50" text-anchor="middle" text-rendering="optimizeLegibility"><tspan>Flourish</tspan></text>
+			<text x="50" y="50" text-anchor="middle" text-rendering="optimizeLegibility"><tspan>Acquiesce</tspan></text>
 			
 	    </svg>                         
 	</body>
