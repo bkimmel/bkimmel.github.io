@@ -1,0 +1,163 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: oldlace;
+    color: hsla(0,90%,10%,1);
+}
+
+section {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+/*     outline: 1px solid red; */
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: .1rem;
+}
+
+section:nth-child(n+2){
+    justify-content: center;
+}
+
+section:nth-child(2n){
+    background-color: hsla(140,70%,20%,.05);
+}
+
+h1,h2 {
+    font-family: "Simonetta", sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+h1 {
+    display: block;
+    flex-basis: 100%;
+    font-size: 4rem;
+    margin-bottom: 0rem;
+    margin-top: 0;
+}
+
+.altnames {
+    
+}
+    .altnames text {
+        dominant-baseline: middle;
+        text-anchor: middle;
+        font-size: 30%;
+        font-family: "Simonetta", sans-serif;
+    }
+        .altnames text tspan{
+            dominant-baseline: inherit;
+            
+        }
+.plantinfo {
+    background-color: darkgreen;
+    width: 95vw;
+    height: 40vw;
+    margin: 0 auto;
+}
+    .plantinfo image {
+       
+       transform: translateX(-50%);
+    }
+        .plantinfo image.in {
+           transform: translateX(0);
+           transition-property: transform;
+           transition-duration: 300ms;
+           transition-timing-function: ease-out;
+        }
+    .plantinfo .fg {
+        dominant-baseline: middle;
+        text-anchor: start;
+        font-size: 30%;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        fill: oldlace;
+        letter-spacing: .02em;
+    }
+        .plantinfo .fg.tip {
+            dominant-baseline: middle;
+            text-anchor: start;
+            font-size: 20%;
+            font-family: "Simonetta", sans-serif;
+            font-weight: 300;
+            fill: oldlace;
+            letter-spacing: .02em;
+        }
+            .plantinfo .fg.tip tspan {
+                dominant-baseline: inherit;
+            }
+
+aside {
+    background-color: darkgreen;
+    width: 95vw;
+    margin: 0 auto;
+    color: oldlace;
+    margin-bottom: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    letter-spacing: .02em;
+    font-size: .95rem;
+}
+    aside h3 {
+        margin-left: 1rem;
+        margin-bottom: 0;
+        margin-top: .5rem;
+    }
+    aside p {
+        padding-top: 0;
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        fill: oldlace;
+        line-height: 1.3;
+        font-size: .8rem;
+    }
+    aside a {
+        border: 3px solid darkgreen;
+        outline: 4px solid hsla(0,0%,100%,.4);
+        color: linen;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        display: block;
+        width: 12rem;
+        margin: 0 auto;
+        padding: .5rem;
+        text-transform: uppercase;
+        font-family: "Roboto";
+        letter-spacing:.0em;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        background-color: hsla(0,0%,100%,.4);
+        color: black;
+    }
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: auto 0;
+    flex: 1
+    text-align: center;
+    padding-top: 1rem;
+}
+
+p {
+    line-height: 1.75;
+    font-size: 1em;
+    font-weight: 100;
+    flex-basis: 90%;
+    min-width: 20rem;
+    padding: 0rem 1rem 1rem 1rem;
+    margin: 0;
+    flex: 2;
+    text-align: left;
+}
+p:nth-of-type(1){
+    padding-top: 1rem;
+}
+
+@media screen and (min-width: 1000px) {
+    section {
+        padding: 5rem;
+    }
+}
