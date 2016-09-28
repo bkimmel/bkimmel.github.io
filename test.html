@@ -1,19 +1,47 @@
 <body>
-	<section class="colonyInfo">
-		
+	<section class="colonyInfo>
+		<!-- Name -->
+		<!-- Pictures -->
+		<!-- Description -->
 	</section>
-	<section class="broadcasts">
-		<div class="depth">
-			<span class="availableDepth">3</span>
-			<span class="maxDepth">10</span>
-			<span class="recoeryDepth">2/hr</span>
-		</div>
-		<form class="send">
-		</form>
-		<ul class="messages">
-			<li class="m text">Hello World</li>
+	<section class="awareness">
+		<ul>
+			<li><span class="posted">yes</span><span class="received">no</span><form class=""><input type="button" value="remove"></form></li>
 		</ul>
 	</section>
+	<!-- Set-Cookie: -->
+	<!-- At Server, Check Cookie -->
+	<!-- Server gives public key -> SPK. Lohqus path Encrypted with SPK -> Operational Cookie. -->
+	<section class="postKey">
+		
+	</section>
+	<section class="broadcasts" action="/broadcast">
+		<!-- At Server, Check Ops Key == Lohqus Public Key -->
+		<form class="send">
+			<div class="chargeLeft">
+				<span class="availableCharge">3</span>
+				<span class="recoveryCharge">2/hr</span>
+			</div>
+			<label>
+				<span>Broadcast:</span>
+				<select name="type">
+					<option value="public">Public (Cost: 0, Max: 3)</option>
+					<option value="whisper">Whisper (Cost: 1)</option>
+					<option value="tell">Tell (Cost: 2)</option>
+					<option value="holler">Holler (Cost: 3)</option>
+				</select>
+			</label>
+			<label>
+				<span>Message:</span>
+				<input type="text" name="text" />
+			</label>
+		</form>
+		<ul class="liveBroadcasts">
+			<li class="m text public">Hello World</li>
+			<li class="m text whisper" data-keyto="Abs+342YT">Hi Friend</li>
+		</ul>
+	</section>
+	<!-- At Server, Check Symmetric Key For Receiver -->
 	<section class="receiver">
 		<ul class="messages">
 			<li class="m text">Hello World</li>
