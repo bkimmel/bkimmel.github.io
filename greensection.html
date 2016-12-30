@@ -1,0 +1,138 @@
+<!-- https://bkimmel.github.io/ -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Green Section</title>
+        <meta name="description" content="Sample page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+			h1 {
+				text-align: center;
+			}
+			svg {
+				display: block;
+				width: 50%;
+				height: 40vh;
+				outline: 1px solid red;
+				margin: 20px auto;
+			}
+			
+			svg rect {
+				fill: #00FF00;
+				stroke: red;
+				stroke-width: 5px;
+			}
+			
+			svg circle {
+				fill: url(#GREEN_COVER);
+				stroke: red;
+				stroke-width: 5px;
+			}
+			
+			svg text {
+				font-family: Helvetica, sans-serif;
+				text-anchor: middle;
+			}
+			svg text.display {
+				fill: #00FF00;
+				stroke: #00FF00;
+				stroke-width: 0px;
+				font-family: Helvetica, sans-serif;
+				font-kerning: normal;
+				font-size: 1.3em;
+				
+			}
+
+			svg.filter circle {
+				filter: url(#GreenWash);
+			}
+
+			svg.filter image {
+				filter: url(#GreenWash);
+			}
+
+			img {
+				filter: url(#GreenWash);
+			}
+			
+
+        </style>
+        
+    </head>
+    <body>
+    	<h1>Green Section Example</h1>
+        <svg class="normal" viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<defs>
+        		<radialGradient id="GREEN_COVER"
+				   r="70%"
+				   spreadMethod="pad">
+				  <stop offset="0%"   stop-color="#00ff00" stop-opacity="1"/>
+				  <stop offset="100%" stop-color="#000000" stop-opacity="1" />
+				</radialGradient>
+				<filter id="GreenWash">
+					 <feColorMatrix data-at=".4" type="matrix" values=
+					  "1 0 0 0 0,
+					   0 1 0 0 0,
+					   0 0 1 0 0,
+					   0 0 0 0 0"
+					   in="SourceGraphic" result="GREEN_GT" />
+					  <feColorMatrix data-at=".4" type="matrix" values=
+					  "1 0 0 0 0,
+					   0 1 0 0 0,
+					   0 0 1 0 0,
+					   0 -0.0 0 2 0"
+					   in="GREEN_GT" result="GREEN_LT" />
+					  <feComposite operator="in" in="SourceGraphic" in2="GREEN_LT" result="GREEN_COMP"/>
+					  <feComponentTransfer in="GREEN_COMP" result="GREEN_SECTION">
+						<feFuncR type="identity"></feFuncR>
+						<feFuncG type="identity"></feFuncG>
+						<feFuncB type="identity"></feFuncB>
+						<feFuncA type="linear" slope="15" intercept="-13"></feFuncA>
+					  </feComponentTransfer>
+					  <feFlood flood-color="white" flood-opacity="0.2" result="WHITE_FOOD" />
+					  <feComposite operator="in" in="WHITE_FLOOD" in2="GREEN_SECTION" result="WHITE_FLASH"/>
+					  <feComposite operator="atop" in="WHITE_FLASH" in2="SourceGraphic" />
+        		</filter>
+        	</defs>
+			<text x="50" y="13">Normal</text>
+        	<circle cx="50" cy="50" r="30"  />
+			
+        </svg>
+        <svg class="filter" viewBox="0 0 100 100"  preserveAspectRatio="xMidYMid meet">
+        	<text x="50" y="13">Filter:</text>
+        	<circle cx="50" cy="50" r="30"  />
+
+        </svg>
+        <img src="http://assets.worldwildlife.org/photos/946/images/story_full_width/forests-why-matter_63516847.jpg?1345534028" style="width: 80%; max-width: 2000px; height: auto; display: block; margin: 0 auto;">
+        <script>
+        	var matrix_gt = document.querySelector('#GreenWash [result="GREEN_GT"]');
+        	var matrix_lt = document.querySelector('#GreenWash [result="GREEN_LT"]');
+        	function outerSectionTo(n){
+				matrix_gt.setAttribute('values', '1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 ' + 5.0*n + ' 0 0 0');
+				matrix_lt.setAttribute('values', '1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 ' + ((-1.0 * Math.pow(18, n) * n)/.5) + ' 0 5.75 0');
+        	}
+			var anframe = null;
+        	function linearSweep(duration, fromval, tgtval){
+				cancelAnimationFrame(anframe);
+				var t = Date.now();
+				var tgt = t + duration;
+				var len = tgt - t;
+				var dist = tgtval - fromval;
+				anframe = requestAnimationFrame(function sweeper(){
+					if(t >= tgt){
+						outerSectionTo(tgtval);
+						return true;	
+					}
+					t = Date.now();
+					var progresspct = 1 - ((tgt - t)/len);
+					outerSectionTo( fromval + ( progresspct * dist ) );
+					requestAnimationFrame(sweeper);
+				})
+			}
+			setTimeout(function(){ linearSweep(7000, 0, 1) }, 2000);
+			setTimeout(function(){ linearSweep(7000, 1, 0) }, 10000);
+			setInterval(function(){ linearSweep(7000, 0, 1); setTimeout(function(){ linearSweep(7000, 1, 0) }, 8000); }, 18000);
+        </script>
+	</body>
+</html>
