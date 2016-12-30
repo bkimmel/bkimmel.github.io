@@ -90,9 +90,14 @@
 						<feFuncB type="identity"></feFuncB>
 						<feFuncA type="linear" slope="15" intercept="-13"></feFuncA>
 					  </feComponentTransfer>
-					  <feFlood flood-color="white" flood-opacity="0.2" result="WHITE_FOOD" />
+					  <feFlood flood-color="white" flood-opacity=".55" result="WHITE_FOOD" />
 					  <feComposite operator="in" in="WHITE_FLOOD" in2="GREEN_SECTION" result="WHITE_FLASH"/>
-					  <feComposite operator="atop" in="WHITE_FLASH" in2="SourceGraphic" />
+					  <feConvolveMatrix in="WHITE_FLASH" result="WHITE_FLASH_SMOOTH"
+					  kernelMatrix="-1 -1 -1
+									-1 8 -1
+									-1 -1 -1"/>
+					  <feComposite operator="atop" in="WHITE_FLASH_SMOOTH" in2="SourceGraphic" result="COMPOSITE"/>
+					 
         		</filter>
         	</defs>
 			<text x="50" y="13">Normal</text>
