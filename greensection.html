@@ -93,9 +93,9 @@
 					  <feFlood flood-color="white" flood-opacity=".55" result="WHITE_FOOD" />
 					  <feComposite operator="in" in="WHITE_FLOOD" in2="GREEN_SECTION" result="WHITE_FLASH"/>
 					  <feConvolveMatrix in="WHITE_FLASH" result="WHITE_FLASH_SMOOTH"
-					  kernelMatrix="-1 -1 -1
-									-1 8 -1
-									-1 -1 -1"/>
+					  kernelMatrix=".2 .2 .2
+									.2 1 .2
+									.2 .2 .2"/>
 					  <feComposite operator="atop" in="WHITE_FLASH_SMOOTH" in2="SourceGraphic" result="COMPOSITE"/>
 					 
         		</filter>
