@@ -119,8 +119,9 @@
 					requestAnimationFrame(sweeper);
 				})
 			}
-			setTimeout(function(){ linearSweep(5000, 0, 1) }, 2000);
-			setInterval(function(){ linearSweep(5000, 0, 1) }, 8000);
+			setTimeout(function(){ linearSweep(7000, 0, 1) }, 2000);
+			setTimeout(function(){ linearSweep(7000, 1, 0) }, 10000);
+			setInterval(function(){ linearSweep(7000, 0, 1); setTimeout(function(){ linearSweep(7000, 1, 0) }, 8000); }, 18000);
 		</script>
 	</body>
 </html>
