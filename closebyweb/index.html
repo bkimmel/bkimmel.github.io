@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Closeby Web</title>   
+</head>
+<body style="text-align: center;">
+    <h1>Magic</h1>
+	<button class="fetch">Fetch The Answer</button>
+	<p class="answer"></p>
+    <script defer>
+	window.ble = function(){
+		/**** Because BLE API can only "react" to user actions (kinda like Audio) ****/
+		console.log('handling click');
+		navigator.bluetooth.requestDevice({
+			filters:[
+				/*** The BLE API does *not* allow you to haphazardly scan around and connect to stuff - you have to have a 
+				specific service you are looking for ***/
+				{services: [0xffd0]}
+			]
+		})
+		.then(function(device){
+			console.log('device');
+			/*** Here, we have the device that offers the service we scanned for above - so we initiate a "connection" to 
+			the device that allows us to act as a GATT client ***/
+			return device.gatt.connect();
+		})
+		.then(function(server){
+			console.log('server');
+			/*** OK, now we have a connection to the device and can treat the device like a GATT "server" ***/
+			return server.getPrimaryService(0xffd0);
+		})
+		.then(function(service){
+			console.log('service');
+			/*** One more step: We ask the service for a "characteristic" - (finally) ***/
+			/*You could get more than one like so:*/
+			//return Promise.all([service.getCharacteristic(0xfff1), service.getCharacteristic(0xfff2)]);
+			return service.getCharacteristic(0xfff1);
+		})
+		.then(function(gatt_char){
+			/*** YAAASSS!! MAGIC! ***/
+			/*** gatt characteristics can be read from, written to and subscribed to in mostly familiar ways***/
+			gatt_char.readValue().then(function(stuff){
+				//stuff arrives as binary arrays
+				var msg = (new TextDecoder()).decode(stuff);
+				document.querySelector('.answer').innerText = msg;
+			});
+			//gatt_char.startNotifications
+			
+		})
+		.catch(function(e){
+			document.querySelector('.answer').innerText = 'Busted: ' + e;
+		})
+
+	}
+
+	document.querySelector('.fetch').addEventListener('click', window.ble);
+	</script>
+</body>
+</html>
