@@ -1,0 +1,47 @@
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sunlight</title>
+    <style>
+        svg {
+            width: 40vw;
+            height: 40vw;
+            outline: 1px solid #555;
+            margin: 0 auto;
+            display: block;
+        }
+
+        svg text {
+            font-family: Helvetica, sans-serif;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sunlight</h1>
+    <svg viewBox="0 0 100 100">
+        <defs>
+            <filter id="sun1" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+                <feTurbulence result="fe-turb-fractal" type="fractalNoise" baseFrequency="0.5855" seed="2" numOctaves="1" />
+                <feComposite in="SourceGraphic" in2="fe-turb-fractal" operator="in" />
+            </filter>
+            <filter id="sun2" filterUnits="objectBoundingBox" x="0%" y="0%" width="120%" height="100%">
+                <feConvolveMatrix result="sun_conv" kernelMatrix="0 0 0
+                                                0 -4 1
+                                                0 1 4"/>
+                <feOffset id="offset" in="SourceGraphic" dx="1" dy="1" result="off"/>
+                <feImage result="lightlay" xlink:href="#sun_rect" width="100%" height="100%" />
+                <feComposite result="sun_comp" in="sun_conv" in2="lightlay" operator="in" />
+                <feOffset result="off2" in="sun_comp" dx=".75" dy=".75"/>
+                <feMerge>
+                    <feMergeNode in="off2" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+        <rect id="sun_rect" x="-30" y="0" width="130" height=".5" fill="#000" filter="url(#sun1)" transform="translate(0,0) skewX(34) scale(1, 70)"/>
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="middle" filter="url(#sun2)">Test</text>
+    </svg>
+</body>
