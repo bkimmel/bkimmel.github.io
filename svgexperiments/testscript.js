@@ -100,6 +100,31 @@ var html = `
     <text x="500" y="50" text-anchor="middle" dominant-baseline="middle" style="font-size: 7em;" filter="url(#sunlight)">Test</text>
 
 </svg>
+<svg style="width: 100%; height: 10vw;" viewBox="0 0 1000 100" preserveAspectRatio="xMidYMid meet">
+    <defs>
+        
+        <filter id="sun3" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence result="fe-turb-fractal" type="fractalNoise" baseFrequency="0.1155" seed="3" numOctaves="1" />
+            <feComposite in="SourceGraphic" in2="fe-turb-fractal" operator="in" />
+        </filter>
+        <rect id="sun_rect3" x="-300" y="0" width="1300" height="5" fill="#000" filter="url(#sun3)" transform="translate(0,0) skewX(-340) scale(1, 700)"/>
+        <filter id="sun_bot">
+            <feConvolveMatrix result="sun_conv3"
+              kernelMatrix="0 0 0 
+                            0 -2 1
+                            0 1 0 "/>
+            <feMorphology result="sun_morph3" in="sun_conv3" operator="dilate" radius="2" />
+            <feImage result="lightlay3" xlink:href="#sun_rect3" width="100%" height="100%" />
+            <feComposite result="sun_comp3" in="sun_morph3" in2="lightlay3" operator="in" />
+            <feOffset result="off3" in="sun_comp" dx="0" dy="1.25"/>
+        </filter>
+        <filter>
+        </filter>
+    </defs>
+    
+    <text x="500" y="50" text-anchor="middle" dominant-baseline="middle" style="font-size: 7em;" fill="#222" filter="url(#sun_bot)">Test</text>
+    <text x="500" y="50" text-anchor="middle" dominant-baseline="middle" style="font-size: 7em;" fill="#70fd70">Test</text>
+</svg>
 `;
 
 window._getY = function getY(rads, h){
@@ -111,6 +136,7 @@ window._getX = function getX(rads, h){
 };
 
 window._easeOutSine = function (b, c, d, t) {
+    //b: start position, c: delta/change to start, d: duration, t: current time
 	return c * Math.sin(t/d * (Math.PI/2)) + b;
 };
 
@@ -200,6 +226,29 @@ window.animateDisp = function amimateDisp(){
         }
         else {
             tgt.setAttribute('scale',sineDisp(t));
+            requestAnimationFrame(doanim);
+        }
+    });
+
+}
+
+window.animateSlide = function amimateSlide(){
+    var duration = 15000;
+    var starttime = Date.now();
+    var sineDisp = _easeOutSine.bind(this, 0, 80, duration);
+    var tgt = document.getElementById('sun_rect3');
+   
+    if(!('requestAnimationFrame' in window)){
+         return 1;
+    }
+    //"translate(0,0) skewX(-340) scale(1, 700)"
+    requestAnimationFrame(function doanim(){
+        var t = Date.now() - starttime;
+        if(t >= duration){
+            return tgt.setAttribute('transform','translate(80,0) skewX(-340) scale(1, 700)');
+        }
+        else {
+            tgt.setAttribute('transform','translate('+ sineDisp(t) +',0) skewX(-340) scale(1, 700)');
             requestAnimationFrame(doanim);
         }
     });
