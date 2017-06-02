@@ -6517,7 +6517,7 @@
 		</svg>
 	</section>
 	<script async>
-		var fadeDuration = 300; //ms;
+		var fadeDuration = 200; //ms;
 
 		window._easeOutSine = function (start_pos, adjustment, duration, elapsed) {
 			return adjustment * Math.sin(elapsed/duration * (Math.PI/2)) + start_pos;
@@ -6551,7 +6551,7 @@
 			}
 
 			for(let i of Object.keys(buckets)){
-				let stagger = 20; //ms to stagger buckets
+				let stagger = 100; //ms to stagger buckets
 				for (let path of buckets[i]){
 					setTimeout(function(){ fadeOutPath(path) }, stagger * i);
 				}
