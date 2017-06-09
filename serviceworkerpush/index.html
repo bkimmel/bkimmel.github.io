@@ -43,11 +43,12 @@
 					return Promise.reject(new Error('No pushManager Available'));
 				})
 				.then(function(pushManager){
+					var subscriptionOptions = {userVisibleOnly: true}; 
 					return new Promise(function(res, rej){
 						if(typeof pushManager.getSubscription == 'function'){
 							pushManager.getSubscription().then(function(pushSubscription){
 								if(pushSubscription === null){
-									pushManager.subscribe().then(function(pushSubscription){
+									pushManager.subscribe(subscriptionOptions).then(function(pushSubscription){
 										console.log('Subscription successful: %s', err);
 										res(pushSubscription);
 									})
@@ -63,7 +64,7 @@
 						}
 						else {
 						
-							pushManager.subscribe().then(function(pushSubscription){
+							pushManager.subscribe(subscriptionOptions).then(function(pushSubscription){
 								console.log('Subscription successful: %s', err);
 								res(pushSubscription);
 							})
