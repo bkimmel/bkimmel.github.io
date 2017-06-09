@@ -1,9 +1,9 @@
 <!-- https://bkimmel.github.io/ -->
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en-US">
     <head>
         <meta charset="utf-8">
-        <title>sample</title>
+        <title>SW Push Example</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/main.css">
@@ -24,7 +24,64 @@
 			<button class="pushsub" disabled="true">Subscribe</button>
         </div>
 		<div>See chrome://serviceworker-internals/ </div>
-        <script src="scripts/main.js"></script>
+        <script>
+			
+			var swreg = navigator.serviceWorker.register('sw.js', {scope: './'});
+			
+			function doSubscription(swreg){
+				console.log('Doing subscription');
+				swreg.then(function(reg){
+					console.log('Got registration: %b', reg);
+					if(reg && reg.pushManager){
+						return Promise.resolve(reg.pushManager);
+					}
+					return Promise.reject(new Error('No pushManager Available'));
+				})
+				.then(function(pushManager){
+					return new Promise(function(res, rej){
+						if(typeof pushManager.getSubscription == 'function'){
+							pushManager.getSubscription().then(function(pushSubscription){
+								if(pushSubscription === null){
+									pushManager.subscribe().then(function(pushSubscription){
+										console.log('Subscription successful: %s', err);
+										res(pushSubscription);
+									})
+									.catch(function(err){
+										console.warn('Problem subscribing: %s', err);
+										rej(err);
+									});
+								}
+								else {
+								
+								}
+							});
+						}
+						else {
+						
+							pushManager.subscribe().then(function(pushSubscription){
+								console.log('Subscription successful: %s', err);
+								res(pushSubscription);
+							})
+							.catch(function(err){
+								console.warn('Problem subscribing: %s', err);
+								rej(err);
+							});
+						
+						}
+					});
+				})
+				.then(function(pushSubscription){
+					window.__pushSub = pushSubscription;
+					console.log('subscription on __pushSub');
+				})
+				.catch(function(err){
+					console.log(err);
+				})
+			}
+			
+			document.querySelector('.pushsub').addEventListener('click', function(){ doSubscription(swreg); })
+				
+		</script>
         
 </body>
 </html>
