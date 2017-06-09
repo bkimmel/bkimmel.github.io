@@ -27,6 +27,11 @@
         <script>
 			
 			var swreg = navigator.serviceWorker.register('sw.js', {scope: './'});
+			var pushsub = document.querySelector('.pushsub');
+			
+			swreg.then(function(){ 
+				pushsub.removeAttribute('disabled');
+			});
 			
 			function doSubscription(swreg){
 				console.log('Doing subscription');
@@ -79,7 +84,7 @@
 				})
 			}
 			
-			document.querySelector('.pushsub').addEventListener('click', function(){ doSubscription(swreg); })
+			pushsub.addEventListener('click', function(){ doSubscription(swreg); });
 				
 		</script>
         
