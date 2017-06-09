@@ -10,6 +10,6 @@ self.addEventListener('push', function(event) {
     self.registration.showNotification(title, {  
       body: body,
       tag: tag  
-    });  
+    })
   );  
 });
