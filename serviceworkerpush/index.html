@@ -49,7 +49,7 @@
 							pushManager.getSubscription().then(function(pushSubscription){
 								if(pushSubscription === null){
 									pushManager.subscribe(subscriptionOptions).then(function(pushSubscription){
-										console.log('Subscription successful: %s', err);
+										console.log('Subscription successful: %s', !!pushSubscription);
 										res(pushSubscription);
 									})
 									.catch(function(err){
