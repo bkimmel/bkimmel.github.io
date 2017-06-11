@@ -32,6 +32,25 @@
 			swreg.then(function(){ 
 				pushsub.removeAttribute('disabled');
 			});
+		
+		
+		
+			function urlB64ToUint8Array(base64String) {
+				 const padding = '='.repeat((4 - base64String.length % 4) % 4);
+				 const base64 = (base64String + padding)
+				 .replace(/\-/g, '+')
+				 .replace(/_/g, '/');
+				 console.log(base64);
+				 const rawData = window.atob(base64);
+				 console.log(rawData);
+				 const outputArray = new Uint8Array(rawData.length);
+
+				 for (let i = 0; i < rawData.length; ++i) {
+				  outputArray[i] = rawData.charCodeAt(i);
+				 }
+				 return outputArray;
+			}
+		
 			
 			function doSubscription(swreg){
 				console.log('Doing subscription');
@@ -43,7 +62,7 @@
 					return Promise.reject(new Error('No pushManager Available'));
 				})
 				.then(function(pushManager){
-					var app_sk = new TextEncoder('utf-8').encode('BKJu_M4ulXfP-RWyBUtCUss_CSRlF6SsdRBFGqbtE2rvNEESo8icyRrGNVyjNI7S3McS8f5av_Dvuh2U2n13MoE');
+					var app_sk = urlB64ToUint8Array('BKJu_M4ulXfP-RWyBUtCUss_CSRlF6SsdRBFGqbtE2rvNEESo8icyRrGNVyjNI7S3McS8f5av_Dvuh2U2n13MoE');
 					var subscriptionOptions = {userVisibleOnly: true, applicationServerKey: app_sk}; 
 					return new Promise(function(res, rej){
 						if(typeof pushManager.getSubscription == 'function'){
