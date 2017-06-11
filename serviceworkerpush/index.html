@@ -43,7 +43,7 @@
 					return Promise.reject(new Error('No pushManager Available'));
 				})
 				.then(function(pushManager){
-					var subscriptionOptions = {userVisibleOnly: true}; 
+					var subscriptionOptions = {userVisibleOnly: true, applicationServerKey: 'BKJu_M4ulXfP-RWyBUtCUss_CSRlF6SsdRBFGqbtE2rvNEESo8icyRrGNVyjNI7S3McS8f5av_Dvuh2U2n13MoE'}; 
 					return new Promise(function(res, rej){
 						if(typeof pushManager.getSubscription == 'function'){
 							pushManager.getSubscription().then(function(pushSubscription){
