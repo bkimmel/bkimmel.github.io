@@ -1,0 +1,36 @@
+<!-- https://bkimmel.github.io/ -->
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>SW PubKey</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+    </head>
+    <body>
+       
+		<script>
+			var request = new XMLHttpRequest();
+			request.open('GET', 'https://localhost/getpublicvapidkey', true);
+
+			request.onload = function() {
+			  if (request.status >= 200 && request.status < 400) {
+				// Success!
+				debugger;
+			  } else {
+				// We reached our target server, but it returned an error
+				debugger;
+			  }
+			};
+
+			request.onerror = function() {
+			  // There was a connection error of some sort
+			  debugger;
+			};
+
+			request.send();
+		</script>
+	</body>
+</html>
