@@ -6,7 +6,37 @@
         <title>SW Push Example</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles/main.css">
+        <style>
+			body {
+				background: #fafafa;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				color: #333;
+			}
+
+			.hero-unit {
+				margin: 50px auto 0 auto;
+				width: 300px;
+				font-size: 18px;
+				font-weight: 200;
+				line-height: 30px;
+				background-color: #eee;
+				border-radius: 6px;
+				padding: 60px;
+			}
+
+			.hero-unit h1 {
+				font-size: 60px;
+				line-height: 1;
+				letter-spacing: -1px;
+			}
+
+			.browsehappy {
+				margin: 0.2em 0;
+				background: #ccc;
+				color: #000;
+				padding: 0.2em 0;
+			}
+		</style>
         <link rel="manifest" href="manifest.json">
         
     </head>
@@ -50,6 +80,70 @@
 				 }
 				 return outputArray;
 			}
+			
+			function getVapidKey(){
+				var VapidKey = new Promise(function(resolve, reject){
+					var request = new XMLHttpRequest();
+					request.open('GET', 'https://www.deitymode.com/getpublicvapidkey', true);
+					request.onload = function() {
+					  if (this.status >= 200 && this.status < 400) {
+					   try {
+						   resolve( JSON.parse(this.response).pubkey );
+					   }
+					   catch(e){
+						   reject(e);
+					   }
+					  } else {
+					   reject(new Error('Error fetching vapid key'));
+					  }
+					};
+
+					request.onerror = function() {
+					  // There was a connection error of some sort
+					  reject(new Error('Connection Error'));
+					};
+
+					request.send('');
+				});
+				
+				return VapidKey;
+			}
+			
+			function dispatchPushSubscription(raw_sub, sub_data){
+			  return new Promise(function(resolve, reject){
+
+				  var request = new XMLHttpRequest();
+				  request.open('POST', 'https://www.deitymode.com/submitpushsubscription', true);
+
+				  request.onload = function() {
+					if (this.status >= 200 && this.status < 400) {
+					  // Success!
+					  //var data = JSON.parse(this.response);
+					  //debugger;
+					  resolve(this.response);
+					} else {
+					  // We reached our target server, but it returned an error
+					  reject(this.response);
+					}
+				  };
+
+				  request.onerror = function() {
+					// There was a connection error of some sort
+					reject(new Error('Connection Error'));
+				  };
+
+				  request.setRequestHeader("Content-type", "application/json");
+
+				  var subs = {
+					  sub: raw_sub,
+					  data: sub_data
+				  };
+
+				  request.send(JSON.stringify(subs));
+
+			  });
+			  
+			}
 		
 			
 			function doSubscription(swreg){
@@ -62,7 +156,12 @@
 					return Promise.reject(new Error('No pushManager Available'));
 				})
 				.then(function(pushManager){
-					var app_sk = urlB64ToUint8Array('BKJu_M4ulXfP-RWyBUtCUss_CSRlF6SsdRBFGqbtE2rvNEESo8icyRrGNVyjNI7S3McS8f5av_Dvuh2U2n13MoE');
+					return Promise.all([pushManager, getVapidKey()])
+				})
+				.then(function(msgset){
+					var pushManager = msgset[0];
+					//var app_sk = urlB64ToUint8Array('BKJu_M4ulXfP-RWyBUtCUss_CSRlF6SsdRBFGqbtE2rvNEESo8icyRrGNVyjNI7S3McS8f5av_Dvuh2U2n13MoE');
+					var app_sk = urlB64ToUint8Array(msgset[1]);
 					var subscriptionOptions = {userVisibleOnly: true, applicationServerKey: app_sk}; 
 					return new Promise(function(res, rej){
 						if(typeof pushManager.getSubscription == 'function'){
@@ -99,6 +198,15 @@
 				.then(function(pushSubscription){
 					window.__pushSub = pushSubscription;
 					console.log('subscription on __pushSub');
+					var keys = {'p256dh': window.btoa( String.fromCharCode.apply(null, new Uint8Array(__pushSub.getKey('p256dh'))) ), 'auth':  window.btoa( String.fromCharCode.apply(null, new Uint8Array(__pushSub.getKey('auth'))) )};
+					window.__pushSub.keys = keys;
+					
+					return dispatchPushSubscription(window.__pushSub, {testdata: 12345});
+				})
+				.then(function(serverResponse){
+					console.log('Server Responds: %s', serverResponse);
+					document.querySelector('.pushsub').innerHTML = "Thanks for Subscribing!";
+					document.querySelector('.pushsub').disabled = true;
 				})
 				.catch(function(err){
 					console.log(err);
