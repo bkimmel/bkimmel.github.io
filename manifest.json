@@ -1,0 +1,16 @@
+{
+  "short_name": "Standalone",
+  "name": "Standalone Test",
+  "icons": [
+    {
+      "src": "192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#FF0000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#FF0000"
+}
