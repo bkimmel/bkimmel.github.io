@@ -10,7 +10,7 @@
   ],
   "start_url": "/?source=pwa",
   "background_color": "#FF0000",
-  "display": "standalone",
+  "display": "minimal-ui",
   "scope": "/",
   "theme_color": "#FF0000"
 }
