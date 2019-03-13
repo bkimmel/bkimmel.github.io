@@ -9,15 +9,21 @@
   </head>
   <body>
     <h1>Testing Web App Standalone Mode</h1>
+	<button>Install</button>
 	<script>
 		navigator.serviceWorker.register('/worker_standalone.js');
 	</script>
 	<script defer>
+		let deferredPrompt = null;
 		window.addEventListener('beforeinstallprompt', (e) => {
 		  // Prevent Chrome 67 and earlier from automatically showing the prompt
 		  e.preventDefault();
 		  // Stash the event so it can be triggered later.
-		  e.prompt();
+		  deferredPrompt = e;
+		  document.querySelector('button').addEventListener('click', ()=>{
+			deferredPrompt && deferredPrompt.prompt();
+			deferredPrompt = null;
+		  })
 		});
 	</script>
   </body>
