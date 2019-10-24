@@ -1,1 +1,2 @@
 1. Use `unkown` for a type you plan to narrow later (or for just equality & boolean ops like ===, ||, etc.)
+2. Typescript can infer _specific types_ like true or false, not just boolean
