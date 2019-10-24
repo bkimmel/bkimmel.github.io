@@ -1,1 +1,1 @@
-1. Use `unkown` for a type you plan to narrow later.
+1. Use `unkown` for a type you plan to narrow later (or for just equality & boolean ops like ===, ||, etc.)
