@@ -1,3 +1,3 @@
 1. Use `unkown` for a type you plan to narrow later (or for just equality & boolean ops like ===, ||, etc.)
 2. Typescript can infer _specific types_ like true or false, not just boolean: These are called _type literals_.
-3. Tupescript supports numeric separators like: let oneMillion = 1_000_000 // Equivalent to 1000000
+3. Typescript supports numeric separators like: let oneMillion = 1_000_000 // Equivalent to 1000000
