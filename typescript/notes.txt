@@ -1,3 +1,5 @@
 1. Use `unkown` for a type you plan to narrow later (or for just equality & boolean ops like ===, ||, etc.)
 2. Typescript can infer _specific types_ like true or false, not just boolean: These are called _type literals_.
 3. Typescript supports numeric separators like: let oneMillion = 1_000_000 // Equivalent to 1000000
+4. A key like `[anyname: string]: number` is an "index signature" that allows any number of keys that follow the pattern ( http://www.typescriptlang.org/play/index.html#code/DYUwLgBADghgznEA7A5iATgGQJZzALggG8AoCCAM2GxQAsCI91tUAaMidEAEwFEBPEAH5CAIwD240DCTtyAbUQwwAOQCuAW1EZCSTdvQBdQkxYoSAXwgBeYpWp0GAcgDMARhcAmJ6whuADIROtNhOEFZAA
+)
