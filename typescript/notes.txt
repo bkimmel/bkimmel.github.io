@@ -11,3 +11,6 @@
   C) The type `object` //When you don't care what fields it has, only that it is an object
   D) The type `Object` //Don't - it's unpredictable
 8. A Type Alias is block-scoped, like `let` and `const`: Inside blocks, a `type` will shadow another `type` of the same name outside.
+9. Arrays consisting of one type alias can be declared by `myType[]`
+10. Aliased arrays can be declared by `Array<myType>` or `myType[]`
+11. Inferred arrays declared as "any" by `[]` adjust their types as they are `push`d to.
