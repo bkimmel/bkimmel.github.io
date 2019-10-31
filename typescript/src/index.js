@@ -20,3 +20,18 @@ var myArray = [
         abc: 2
     }
 ];
+var myArrayb = [
+    {
+        abc: 1
+    },
+    {
+        abc: 2
+    }
+];
+var g = []; // any[]
+g.push(1); // number[]
+g.push('red'); // (string | number)[]
+var myTuple = [
+    { abc: 123 },
+    { abc: 456 }
+];

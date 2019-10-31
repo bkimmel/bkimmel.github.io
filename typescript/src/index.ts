@@ -22,10 +22,28 @@ type myShape = {
 }
 
 let myArray: Array<myShape> = [
-{
-  abc: 1
-},
-{
-  abc: 2
-}
+  {
+    abc: 1
+  },
+  {
+    abc: 2
+  }
+]
+
+let myArrayb: myShape[] = [
+  {
+    abc: 1
+  },
+  {
+    abc: 2
+  }
+]
+
+let g = []                  // any[]
+g.push(1)                   // number[]
+g.push('red')               // (string | number)[]
+
+let myTuple: [myShape, ...myShape[]] = [
+  {abc: 123},
+  {abc: 456}
 ]
