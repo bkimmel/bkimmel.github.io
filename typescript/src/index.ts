@@ -16,3 +16,16 @@ function squareOf(n: number) {
 }
   
 squareOf(2)     // evaluates to 4
+
+type myShape = {
+  abc: number
+}
+
+let myArray: Array<myShape> = [
+{
+  abc: 1
+},
+{
+  abc: 2
+}
+]
