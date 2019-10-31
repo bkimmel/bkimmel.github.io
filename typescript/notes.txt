@@ -1,5 +1,13 @@
 1. Use `unkown` for a type you plan to narrow later (or for just equality & boolean ops like ===, ||, etc.)
 2. Typescript can infer _specific types_ like true or false, not just boolean: These are called _type literals_.
 3. Typescript supports numeric separators like: let oneMillion = 1_000_000 // Equivalent to 1000000
-4. A key like `[anyname: string]: number` is an "index signature" that allows any number of keys that follow the pattern ( http://www.typescriptlang.org/play/index.html#code/DYUwLgBADghgznEA7A5iATgGQJZzALggG8AoCCAM2GxQAsCI91tUAaMidEAEwFEBPEAH5CAIwD240DCTtyAbUQwwAOQCuAW1EZCSTdvQBdQkxYoSAXwgBeYpWp0GAcgDMARhcAmJ6whuADIROtNhOEFZAA
+4. A key like `[anyname: string]: number` is an _index signature_ that allows any number of keys that follow the pattern ( http://www.typescriptlang.org/play/index.html#code/DYUwLgBADghgznEA7A5iATgGQJZzALggG8AoCCAM2GxQAsCI91tUAaMidEAEwFEBPEAH5CAIwD240DCTtyAbUQwwAOQCuAW1EZCSTdvQBdQkxYoSAXwgBeYpWp0GAcgDMARhcAmJ6whuADIROtNhOEFZAA
 )
+5. You can mark fields as "assignable only at creation" by `readonly keyName: type` in the type description
+6. You can mark fields as "optional" (i.e. the key may not be there and if it is, it may be undefined) by `keyName?: type`
+7. Four ways to declare objects in Typescript
+  A) By shape `{a: string}`
+  B) Empty literal `{}` //Don't - it's unpredictable
+  C) The type `object` //When you don't care what fields it has, only that it is an object
+  D) The type `Object` //Don't - it's unpredictable
+8. A Type Alias is block-scoped, like `let` and `const`: Inside blocks, a `type` will shadow another `type` of the same name outside.
