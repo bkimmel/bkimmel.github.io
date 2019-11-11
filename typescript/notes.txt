@@ -11,3 +11,12 @@
   C) The type `object` //When you don't care what fields it has, only that it is an object
   D) The type `Object` //Don't - it's unpredictable
 8. A Type Alias is block-scoped, like `let` and `const`: Inside blocks, a `type` will shadow another `type` of the same name outside.
+9. Arrays consisting of one type alias can be declared by `myType[]`
+10. Aliased arrays can be declared by `Array<myType>` or `myType[]`
+11. Inferred arrays declared as "any" by `[]` adjust their types as they are `push`d to inside the scope where they are defined.
+12. _Tuples_ are grainier Arrays where ordinal types can be aliased by `[number, string, ...number[]]`
+13. Readonly arrays and tuples can use non-mutating methods like `.slice` but not `.push`,`.splice`, etc.
+14. _void_ is the return type for a function that doesn't return anything, _never_ is the return type for a function that never returns (e.g. runs in a loop)
+15. If TSC option `strictNullCheck` is false, anything can be set to `null` (bad)
+16. _Enums_ allow several values known at compile time to be referenced by 1 type. Individual values are accessed by `myEnum.thingA`
+17. _const enum_s can only be accessed via string literals, normal enums can be accessed by ordinals
