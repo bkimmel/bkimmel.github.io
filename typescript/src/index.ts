@@ -63,3 +63,17 @@ let greet4 = (name: string) =>  'hello ' + name
 
 // Function constructor (not ypechecked)
 let greet5 = new Function('name', 'return "hello " + name')
+
+// Optional parameter 'nickname'
+let greet6 = (name: string, nickname?: string) =>  'hello' + ((nickname && ' ' + nickname) || '') + ' ' + name
+
+console.log(greet6('Domino'))
+console.log(greet6('Domino','Fats'))
+
+//normal function declaration annotated with types
+function add(a: number, b: number): number {
+  return a + b
+}
+
+console.log( add(3,4) )
+//Errors, as expected: console.log( add(3,'chair') )

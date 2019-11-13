@@ -20,3 +20,4 @@
 15. If TSC option `strictNullCheck` is false, anything can be set to `null` (bad)
 16. _Enums_ allow several values known at compile time to be referenced by 1 type. Individual values are accessed by `myEnum.thingA`
 17. _const enum_s can only be accessed via string literals, normal enums can be accessed by ordinals
+18. In function calls _optional parameters_ have to occur at the end of the list of parameters

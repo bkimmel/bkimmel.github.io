@@ -4,9 +4,9 @@
   "description": "learning",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": ".\\node_modules\\.bin\\tsc",
-    "run": "node dist\\index.js"
+    "run": "node dist\\index.js",
+    "start": "npm run tsc && npm run run"
   },
   "author": "",
   "license": "ISC",
