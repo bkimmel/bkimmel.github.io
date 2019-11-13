@@ -186,3 +186,71 @@ warnUser.wasCalled = false
 
 warnUser('warn once')
 warnUser('warn once')
+
+//### GENERIC PARAMETERS
+type Filter = {
+  (array: number[], f: (item: number) => boolean): number[]
+  (array: string[], f: (item: string) => boolean): string[]
+  (array: object[], f: (item: object) => boolean): object[]
+}
+
+function filter(myarray: unknown[], f: (arg0: unknown)=> unknown[]): unknown[] {
+  let result: unknown[] = []
+  for (let i = 0; i < myarray.length; i++) {
+    let item = myarray[i]
+    if (f(item)) {
+      result.push(item)
+    }
+  }
+  return result
+}
+
+let names = [
+  {firstName: 'beth'},
+  {firstName: 'caitlyn'},
+  {firstName: 'xin'}
+]
+
+//The problem:
+// let result = filter(
+//   names,
+//   _ => _.firstName.startsWith('b')
+// ) //TS Error: Object is of type unkown
+
+// result[0].firstName // Error TS2339: Property 'firstName' does not exist on type 'object'.
+
+type FilterGeneric = {
+  //Given a Type T, this signature takes Param1: array of T's and Param2: function that expects its first param to be T and RETURNS an array of T's (T[])
+  //Typescript infers T from what we pass in the first argument as `array`
+  <T>(array: T[], f: (item: T) => boolean): T[]
+}
+
+let genfilter: FilterGeneric = (array, f) => {
+  let result = []
+  for (let i = 0; i < array.length; i++) {
+    let item = array[i]
+    if (f(item)) {
+      result.push(item)
+    }
+  }
+  return result
+}
+
+console.log( genfilter([1, 2, 3], _ => _ > 2) )
+console.log( genfilter(['aaa', 'aaaa', 'a'], _ => _.length > 2) )
+
+let gennames = [
+  {firstName: 'beth'},
+  {firstName: 'caitlyn'},
+  {firstName: 'xin'}
+]
+//Here, T is inferred as {firstname: string}
+console.log( genfilter(gennames, _ => _.firstName[0] in {'b':1,'x':1}) )
+
+//Annotate the Promise's generic parameter
+let promise = new Promise<number>(resolve =>
+  resolve(45)
+)
+promise.then(result => // number
+  console.log( result * 2 )
+)

@@ -29,3 +29,9 @@
 24. Prefer specific type annotations in overloaded function signatures (e.g. Date over any, Date | string over any), to make the typing stronger and the function easier to implement
 25. Function declarations cannot be signature-checked like expression assignments
 26. Always include an "any" case when overloading function signatures
+27. A _Generic Type Parameter_ is: "A placeholder type used to enforce a type-level constraint in multiple places. Also known as polymorphic type parameter."
+28. The angle brackets `<>` indicate the scope of the Generic Parameter
+29. Generics seem useful for getting Typescript to STFU inside functions
+30. You can bind generic parameters to method signatures (where each call will infer T), or "higher" on the type itself 
+  as a _generic type alias_ like `MyType<T> = {(x: T[]): T[]}; let y: MyType<string> = //...`
+31. You have to annotate Promise generic parameters to use the .then result: "new Promise<number>(resolve //..."
