@@ -77,3 +77,31 @@ function add(a: number, b: number): number {
 
 console.log( add(3,4) )
 //Errors, as expected: console.log( add(3,'chair') )
+
+
+function sumVariadicSafe(...numbers: number[]): number {
+  return numbers.reduce((total, n) => total + n, 0)
+}
+
+//Logs 6
+console.log( sumVariadicSafe(1,2,3) )
+//TSError: console.log( sumVariadicSafe(1,2,'c') )
+//TSError: also works for .call, .apply, .bind //console.log( sumVariadicSafe.apply(null, [1,2,'c']) )
+
+function fancyDate(this: Date) {
+  return `${this.getDate()}/${this.getMonth()+1}/${this.getFullYear()}`
+}
+
+console.log( fancyDate.call(new Date()) )
+//TSErrror: not assignable to method's this of type `Date` //fancyDate()
+
+//Iterators are annotated with IterableIterator
+function* myGenerator(): IterableIterator<number> {
+  yield 1
+  yield 2
+  yield 3
+}
+
+let myNumberArray: number[] = [...myGenerator()]
+
+console.log( myNumberArray )
