@@ -24,3 +24,8 @@
 19. Prefer _default parameters_ `(a = 'a', b = 'b')` over _optional parameters_
 20. You can type-annotate `this` in a function by prefixing it's special TS keyword (`this`) at the beginning of the parameters list
 21. Iterators are annotated by the TS built-in `IterableIterator` and can be used like `IterableIterator<number>`
+22. `Type-level` code is code that exists to express type information (as a rule of thumb, if it's not valid JS, it's `Type-level`)
+23. Type-annotate function _call signatures_ by using the following syntax: `type Log = (message: string, userId?: string) => void`
+24. Prefer specific type annotations in overloaded function signatures (e.g. Date over any, Date | string over any), to make the typing stronger and the function easier to implement
+25. Function declarations cannot be signature-checked like expression assignments
+26. Always include an "any" case when overloading function signatures

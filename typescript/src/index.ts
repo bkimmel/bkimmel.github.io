@@ -105,3 +105,84 @@ function* myGenerator(): IterableIterator<number> {
 let myNumberArray: number[] = [...myGenerator()]
 
 console.log( myNumberArray )
+
+//Type a call signature
+type Log = (message: string, userId?: string) => void
+
+let testLogA: Log = (message, userId="none") => {
+  console.log(message, userId)
+}
+
+type Reservation = {
+  id: number
+}
+//A function type annotation with overloaded call signature 
+type Reserve = {
+  (from: Date, to: Date, destination: string): Reservation
+  (from: Date, destination: string): Reservation
+}
+
+//At the call-site, we account for the fact that the second param may be to _or_ destination
+let reserve: Reserve = (
+  from: Date,
+  toOrDestination: Date | string,
+  destination?: string
+) => {
+  if (toOrDestination instanceof Date && destination !== undefined) {
+    // Book a one-way trip
+    return {id: 1}
+  } else if (typeof toOrDestination === 'string') {
+    // Book a round trip
+    return {id: 2}
+  }
+  else {
+    return {id: 3}
+  }
+}
+
+//Be careful to only use const enum and only with string values, otherwise numbers can be assigned to them
+const enum CustomElements {
+  anchor = 'a',
+  canvas = 'canvas',
+  table = 'table',
+  generic = 'generic'
+}
+
+type CreateElement = {
+  (tag: CustomElements.anchor): 1
+  (tag: CustomElements.canvas): 2
+  (tag: CustomElements.table): 3
+  (tag: CustomElements.generic): 4
+}
+
+//to overload function declaration, just repeat the function name with different signatures
+function randomF(arg: number): string;
+function randomF(arg: string): number;
+function randomF(arg: any): any {
+  if(typeof arg === 'number'){
+    return 'a number'
+  }
+  return 1010
+}
+
+console.log( randomF('a string') )
+console.log( randomF(20) )
+
+//Annotating properties that are assigned to functions:
+type WarnUser = {
+  (warning: string): void
+  //Add the property annotation using this syntax
+  wasCalled: boolean
+}
+
+function warnUser(warning: string) {
+  if (warnUser.wasCalled) {
+    return
+  }
+  warnUser.wasCalled = true
+  console.log(warning)
+}
+warnUser.wasCalled = false
+
+warnUser('warn once')
+warnUser('warn once')
