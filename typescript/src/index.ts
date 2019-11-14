@@ -254,3 +254,103 @@ let promise = new Promise<number>(resolve =>
 promise.then(result => // number
   console.log( result * 2 )
 )
+
+type MyEvent<T> = {
+  target: T
+  type: string
+}
+
+
+type TimedEvent<T> = {
+//can pass inferences
+  event: MyEvent<T>
+  from: Date
+  to: Date
+}
+
+function triggerEvent<T>(t_event: TimedEvent<T>): MyEvent<T> {
+  //some stuff for timed events
+  return t_event.event
+}
+
+let mytimed = triggerEvent({ // T is Element | null
+  event: {
+    target: Promise.resolve(1),
+    type: 'mouseover'
+  },
+  from: new Date(),
+  to: new Date(),
+})
+
+let mytimedb = triggerEvent<Promise<number> | null>({ // T is Element | null
+  event: {
+    target: Promise.resolve(2),
+    type: 'mouseover'
+  },
+  from: new Date(),
+  to: new Date(),
+})
+
+//### Subtypes/Bounded Polymorphism: Use type annotations as "Upper Bounds" for other annotations
+type TreeNode = {
+  value: string
+}
+//We say that LeafNode has an "upper bound" of TreeNode or that LeafNode is a "Subtype" of tree node
+type LeafNode = TreeNode & {
+  isLeaf: true
+}
+type InnerNode = TreeNode & {
+  children: [TreeNode] | [TreeNode, TreeNode]
+}
+
+//Here we say T has an upper bound of TreeNode. That is, T can be either a TreeNode, or a subtype of TreeNode.
+function mapNode<T extends TreeNode>(
+  node: T,
+  f: (value: string) => string
+): T {
+  return {
+    ...node,
+    //1. Without the extends in the annotation above, mapNode would throw a compiletime error, because you can't read .value
+    //on an _unbounded type_ (user could pass a number)
+    //2. It also helps preserve the Type information as it passes trhough the function: Typing the return as just "TreeNode" would lose info
+    value: f(node.value)
+  }
+}
+
+//Add multiple constraints as upper bound of Shape
+type HasSides = {numberOfSides: number}
+type SidesHaveLength = {sideLength: number}
+
+function logPerimeter<
+  Shape extends HasSides & SidesHaveLength
+>(s: Shape): Shape {
+  console.log(s.numberOfSides * s.sideLength)
+  return s
+}
+
+//Annotate this type Square as a combination of constraints
+type Square = HasSides & SidesHaveLength
+let square: Square = {numberOfSides: 4, sideLength: 3}
+logPerimeter(square) // Square, logs "12"
+
+//## PRESERVING TYPE INFO IN VARIADIC FUNCTIONS
+
+function fill(length: number, value: string): string[] {
+  return Array.from({length}, () => value)
+}
+
+//Here, T stands in for "an array of args that are not known until the func is called"
+//...and R is "The type of thing the provided function will return"
+function call<T extends unknown[], R>(
+  //Without the "extends unkown" above, TS will insist that a rest param must be an array type
+  f: (...args: T) => R,
+  //Here, TS will infer a _tuple_ for T based on what was passed in...
+  ...args: T
+): R {
+  //And it can compare that tuple to what R expects
+  return f(...args)
+}
+
+let fill_1_result = call(fill, 10, 'a') //string[] : preserved by R above
+let fill_2_result = call(fill, 10) //TS Error: Expected 3 arguments but got 2
+
