@@ -352,5 +352,22 @@ function call<T extends unknown[], R>(
 }
 
 let fill_1_result = call(fill, 10, 'a') //string[] : preserved by R above
-let fill_2_result = call(fill, 10) //TS Error: Expected 3 arguments but got 2
+//let fill_2_result = call(fill, 10) //TS Error: Expected 3 arguments but got 2
 
+//## DEFAULTS FOR GENERIC TYPES
+type SomePromiseThing<P extends Promise<unknown> = Promise<number>> = {
+  promise: P
+  metainfo: string
+}
+
+//If you want the P to resolve as a string, you must be explicit, because Promise<number> is the default
+let promise_1_test: SomePromiseThing<Promise<string>> = {
+  promise: Promise.resolve('aa'), //Promise<string> bc of the annotation above
+  metainfo: 'blahblahblah'
+}
+
+//But if you want to use the Type Dec's default, you don't need to annotate
+let promise_2_test: SomePromiseThing = {
+  promise: Promise.resolve(2), //Promise<number>
+  metainfo: 'blahblahblah'
+}
