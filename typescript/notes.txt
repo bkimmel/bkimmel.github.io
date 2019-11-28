@@ -35,4 +35,4 @@
 30. You can bind generic parameters to method signatures (where each call will infer T), or "higher" on the type itself 
   as a _generic type alias_ like `MyType<T> = {(x: T[]): T[]}; let y: MyType<string> = //...`
 31. You have to annotate Promise generic parameters to use the .then result: "new Promise<number>(resolve //..."
-32. Bounded Polymorphism (<U extends T>) is a good way to sahre some of the responsibility with the client of the function
+32. Bounded Polymorphism (<U extends T>) is a good way to share some of the responsibility with the client of the function
