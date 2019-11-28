@@ -36,3 +36,15 @@
   as a _generic type alias_ like `MyType<T> = {(x: T[]): T[]}; let y: MyType<string> = //...`
 31. You have to annotate Promise generic parameters to use the .then result: "new Promise<number>(resolve //..."
 32. Bounded Polymorphism (<U extends T>) is a good way to share some of the responsibility with the client of the function
+33. The _private_ access modifier in a constructor `private myprop: MyType` automatically assigns the parameter to this and sets its visibility to private,
+  meaning that code within the instance can read and write to it, but code outside can’t.
+34. _protected_ is like _private_ but can be accessed by subclasses, too
+35. _abstract_ keyword on class makes it so you can't instantiate, but you can define methods etc. for subclasses (like C#)
+36. _abstract_ on method means subclasses must implement
+37. _interfaces_ are like types, with 3 diffs:
+  1) right-hand must be a shape (no literals)
+  2) Interfaces are stricter when extending (error over combination)
+  3) Interfaces with the same name in the same scope are merged ( _declaration merging_ )
+38. _implements_ keyword on a class guarantees the class satisfies the interface
+39. As long as Poodle is assignable to Zebra, TypeScript is OK with it because from our function’s point of view, the two are interchangeable; all that matters is that they implement .trot
+ 

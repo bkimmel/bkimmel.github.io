@@ -381,3 +381,31 @@ function testis<T> (...args: T[]): boolean {
 
 console.log(testis(1,1), testis(1,1,1), testis(1,1,2))
 //console.log(testis(1,1,'1')) //TS: Type "1" is not assignable to "number"
+
+// Declaration merging
+interface MergedUser {
+  name: string
+}
+
+interface MergedUser {
+  age: number
+}
+
+let mergeduser: MergedUser = {
+  name: 'Brent',
+  age: 39
+}
+
+//Demo: TS "type acceptance" (equivalence of same-shape interfaces/types) does not extend to private members 
+class A {
+  private x = 1
+}
+class B extends A {}
+function f(a: A) {}
+
+f(new A)   // OK
+f(new B)   // OK
+
+//f({x: 1})  // Error TS2345: Argument of type '{x: number}' is not
+           // assignable to parameter of type 'A'. Property 'x' is
+           // private in type 'A' but not in type '{x: number}'.
