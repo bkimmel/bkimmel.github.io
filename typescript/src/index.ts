@@ -371,3 +371,13 @@ let promise_2_test: SomePromiseThing = {
   promise: Promise.resolve(2), //Promise<number>
   metainfo: 'blahblahblah'
 }
+
+function testis<T> (...args: T[]): boolean {
+  const fst: T = args[0];
+  let ret: boolean = true;
+  args.forEach((v: T, i)=>{ if(!(v === fst)){ ret = false } });
+  return ret;
+}
+
+console.log(testis(1,1), testis(1,1,1), testis(1,1,2))
+//console.log(testis(1,1,'1')) //TS: Type "1" is not assignable to "number"
