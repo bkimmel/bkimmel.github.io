@@ -379,7 +379,7 @@ function testis<T> (...args: T[]): boolean {
   return ret;
 }
 
-console.log(testis(1,1), testis(1,1,1), testis(1,1,2))
+console.log(testis(1,1), testis(1,1,1), testis(1,1,2), testis('a','a','a'))
 //console.log(testis(1,1,'1')) //TS: Type "1" is not assignable to "number"
 
 // Declaration merging
@@ -409,3 +409,35 @@ f(new B)   // OK
 //f({x: 1})  // Error TS2345: Argument of type '{x: number}' is not
            // assignable to parameter of type 'A'. Property 'x' is
            // private in type 'A' but not in type '{x: number}'.
+
+//To implement more than 1 interface, use this syntax
+interface Animal {
+  readonly name: string
+  eat(food: string): void
+  sleep(hours: number): void
+}
+
+interface Feline {
+  meow(): void
+}
+
+class Cat implements Animal, Feline {
+  readonly name: string
+  constructor(name: string="whiskers"){
+    this.name = name
+  }
+  eat(food: string) {
+    console.info('Ate some', food, '. Mmm!')
+  }
+  sleep(hours: number) {
+    console.info('Slept for', hours, 'hours')
+  }
+  meow() {
+    console.log(this.name + ' said meow')
+  }
+}
+
+let whiskers = new Cat()
+let stripe = new Cat('stripe')
+stripe.meow()
+whiskers.meow()
