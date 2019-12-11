@@ -47,4 +47,4 @@
   3) Interfaces with the same name in the same scope are merged ( _declaration merging_ )
 38. _implements_ keyword on a class guarantees the class satisfies the interface
 39. As long as Poodle is assignable to Zebra, TypeScript is OK with it because from our function’s point of view, the two are interchangeable; all that matters is that they implement .trot
-40. Abstract classes can have constructors, provide default implementations, and set access modifiers for properties and methods. Interfaces can’t do any of those things.
+40. Abstract classes can have constructors, provide default implementations, and set access modifiers for properties and methods. Interfaces can’t do any of those things - they are just "shapes" to match.

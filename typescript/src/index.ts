@@ -441,3 +441,47 @@ let whiskers = new Cat()
 let stripe = new Cat('stripe')
 stripe.meow()
 whiskers.meow()
+
+interface HasURL {
+  url: string
+}
+
+class RequestBuilder {
+
+  private data: object | null = null
+  protected method: 'get' | 'post' | null = null
+  protected url: string | null = null
+  constructor(inrb: RequestBuilder | null = null) {
+    return inrb ? inrb : this
+  }
+  setMethod(method: 'get' | 'post'): this {
+    this.method = method
+    return this
+  }
+  setData(data: object): this {
+    this.data = data
+    return this
+  }
+  setURL(url: string): ReadyRequestBuilder {
+    return new ReadyRequestBuilder('http://test.com', this)
+  }
+
+}
+
+class ReadyRequestBuilder extends RequestBuilder {
+  public send: ()=>void
+  constructor(inurl='', base: RequestBuilder) {
+    super(base)
+    this.url = inurl
+    this.send = () => {
+      console.log('sending to ' + this.url)
+    }
+  }
+}
+
+let rb1 = new RequestBuilder()
+rb1.setMethod('get')
+// rb1.send() //Property 'send' does not exist on type 'RequestBuilder'.ts(2339)
+const rb2 = rb1.setURL('http://www.whatever.com')
+rb2.send()
+
