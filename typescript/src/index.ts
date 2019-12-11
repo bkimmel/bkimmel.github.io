@@ -172,10 +172,10 @@ console.log( randomF(20) )
 type WarnUser = {
   (warning: string): void
   //Add the property annotation using this syntax
-  wasCalled: boolean
+  wasCalled?: boolean
 }
 
-function warnUser(warning: string) {
+let warnUser: WarnUser = (warning: string) => {
   if (warnUser.wasCalled) {
     return
   }
@@ -245,7 +245,7 @@ let gennames = [
   {firstName: 'xin'}
 ]
 //Here, T is inferred as {firstname: string}
-console.log( genfilter(gennames, _ => _.firstName[0] in {'b':1,'x':1}) )
+console.log( genfilter(gennames, _ => _.firstName.charAt(0) in {'b':1,'x':1}) )
 
 //Annotate the Promise's generic parameter
 let promise = new Promise<number>(resolve =>
