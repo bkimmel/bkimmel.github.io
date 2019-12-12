@@ -442,10 +442,14 @@ let stripe = new Cat('stripe')
 stripe.meow()
 whiskers.meow()
 
-interface HasURL {
-  url: string
-}
 
+
+
+/******* RequestBuilder Exercise 
+  Guarantee at compile time that someone can’t call .send before setting at least a URL and a method. Would it be easier to make this guarantee if you also force the user to call methods in a specific order? (Hint: what can you return instead of this?)
+
+  [Harder] How would you change your design if you wanted to make this guarantee, but still let people call methods in any order? (Hint: what TypeScript feature can you use to make each method’s return type “add” to the this type after each method call?)
+**/
 class RequestBuilder {
 
   private data: object | null = null
@@ -484,4 +488,46 @@ rb1.setMethod('get')
 // rb1.send() //Property 'send' does not exist on type 'RequestBuilder'.ts(2339)
 const rb2 = rb1.setURL('http://www.whatever.com')
 rb2.send()
+
+interface HasURL extends RequestBuilder2 {
+  url: string
+}
+
+class RequestBuilder2 {
+
+  private data: object | null = null
+  private method: 'get' | 'post' | null = null
+  url: string | null = null
+  
+  setMethod(method: 'get' | 'post'): this {
+    this.method = method
+    return this
+  }
+  setData(data: object): this {
+    this.data = data
+    return this
+  }
+  setURL(url: string): ReadyRB2 {
+    return new ReadyRB2(url)
+  }
+  send(this: ReadyRB2): ReadyRB2 {
+    console.log('2 sending to ' + this.url)
+    return this
+  }
+}
+
+class ReadyRB2 extends RequestBuilder2 {
+  url: string
+  constructor(myurl: string){
+    super()
+    this.url = myurl
+  }
+}
+
+let myrb = new RequestBuilder2()
+let resss = myrb
+  .setMethod('post')
+  //.send()
+  .setURL('hhh')
+  .send()
 
