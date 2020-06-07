@@ -493,22 +493,29 @@ interface HasURL extends RequestBuilder2 {
   url: string
 }
 
+interface HasMethod extends RequestBuilder2 {
+  method: 'get' | 'post'
+}
+type ReadyRB2 = RequestBuilder2 & HasURL & HasMethod;
+type CheckURL<T extends RequestBuilder2> = T extends ReadyRB2 ? ReadyRB2 : (T extends HasMethod ? HasMethod : (T extends HasURL ? HasURL : T)); 
+
 class RequestBuilder2 {
 
   private data: object | null = null
-  private method: 'get' | 'post' | null = null
+  method: 'get' | 'post' | null = null
   url: string | null = null
   
-  setMethod(method: 'get' | 'post'): this {
-    this.method = method
-    return this
+  setMethod<T extends RequestBuilder2>(this: T, method: 'get' | 'post'): T & HasMethod {
+    this.method = method;
+    return this as T & HasMethod;
   }
   setData(data: object): this {
     this.data = data
     return this
   }
-  setURL(url: string): ReadyRB2 {
-    return new ReadyRB2(url)
+  setURL<T extends RequestBuilder2>(this: T, url: string): T & HasURL {
+    this.url = url;
+    return this as T & HasURL;
   }
   send(this: ReadyRB2): ReadyRB2 {
     console.log('2 sending to ' + this.url)
@@ -516,18 +523,13 @@ class RequestBuilder2 {
   }
 }
 
-class ReadyRB2 extends RequestBuilder2 {
-  url: string
-  constructor(myurl: string){
-    super()
-    this.url = myurl
-  }
-}
 
 let myrb = new RequestBuilder2()
 let resss = myrb
   .setMethod('post')
-  //.send()
+  //.send() //-> TS CATCHES
   .setURL('hhh')
   .send()
 
+type MyType = 1 | 2 | 3 | 'a' | 'b' | 'c';
+type newType = Exclude<MyType, number>
