@@ -1,0 +1,16 @@
+{
+  "short_name": "B. Kimmel: Nownownow",
+  "name": "Brent James Kimmel - What I'm doing now",
+  "icons": [
+    {
+      "src": "192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "https://bkimmel.github.io/now",
+  "background_color": "#FF0000",
+  "display": "minimal-ui",
+  "scope": "/",
+  "theme_color": "#FF0000"
+}
