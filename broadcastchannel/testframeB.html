@@ -10,7 +10,12 @@
     <script>
         const bc = new BroadcastChannel("test_b");
         bc.postMessage(`post from Test Frame B`);
-        bc.postMessage(`can access window.top: ${window.top.captureFlag}`);
+        try {
+            bc.postMessage(`can access window.top: ${window.top.captureFlag}`);
+        }
+        catch(e) {
+            console.log('caught error');
+        }
     </script>
 </body>
 </html>

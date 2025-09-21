@@ -1,0 +1,21 @@
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Frame C</title>
+</head>
+<body style="text-align: center;">
+    <h1>Test Frame C</h1>
+    <script>
+        const bc = new BroadcastChannel("test_c");
+        bc.postMessage(`post from Test Frame C`);
+        // try {
+        //     bc.postMessage(`can access window.top: ${window.top.captureFlag}`);
+        // }
+        // catch(e) {
+        //     console.log('caught error');
+        // }
+    </script>
+</body>
+</html>
