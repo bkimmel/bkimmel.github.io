@@ -9,7 +9,8 @@
     <h1>Test Frame A</h1>
     <script>
         const bc = new BroadcastChannel("test_a");
-        bc.postMessage("post from Test Frame A");
+        bc.postMessage(`post from Test Frame A`);
+        bc.postMessage(`can access window.top: ${window.top.captureFlag}`);
     </script>
 </body>
 </html>

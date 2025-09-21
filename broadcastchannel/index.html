@@ -9,7 +9,8 @@
 
         const bc_a = new BroadcastChannel("test_a");
         bc_a.onmessage = (msg)=>{
-            console.log(`Message from frame A: ${msg}`);
+            console.log(`Message from frame A:`);
+            console.dir(msg);
         }
     </script>   
 </head>
