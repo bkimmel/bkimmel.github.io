@@ -6,6 +6,11 @@
     <title>BroadcastChannel</title>
     <script>
         window.captureFlag = "TEST123";
+
+        const bc_a = new BroadcastChannel("test_a");
+        bc_a.onmessage = (msg)=>{
+            console.log(`Message from frame A: ${msg}`);
+        }
     </script>   
 </head>
 <body style="text-align: center;">
@@ -17,5 +22,6 @@
         height="100px"
         src="./testframeA.html">
     </iframe>
+   
 </body>
 </html>
