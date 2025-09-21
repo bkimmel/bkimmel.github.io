@@ -13,8 +13,8 @@
             console.dir(msg);
         }
 
-        const bc_a = new BroadcastChannel("test_b");
-        bc_a.onmessage = (msg)=>{
+        const bc_b = new BroadcastChannel("test_b");
+        bc_b.onmessage = (msg)=>{
             console.log(`Message from frame B:`);
             console.dir(msg);
         }
