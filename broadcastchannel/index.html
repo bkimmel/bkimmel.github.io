@@ -12,6 +12,12 @@
             console.log(`Message from frame A:`);
             console.dir(msg);
         }
+
+        const bc_a = new BroadcastChannel("test_b");
+        bc_a.onmessage = (msg)=>{
+            console.log(`Message from frame B:`);
+            console.dir(msg);
+        }
     </script>   
 </head>
 <body style="text-align: center;">
@@ -22,6 +28,14 @@
         width="100%"
         height="100px"
         src="./testframeA.html">
+    </iframe>
+
+    <iframe
+        id="testframeb"
+        title="Test Frame B"
+        width="100%"
+        height="100px"
+        src="./testframeB.html">
     </iframe>
    
 </body>
