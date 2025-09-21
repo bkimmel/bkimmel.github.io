@@ -7,5 +7,9 @@
 </head>
 <body style="text-align: center;">
     <h1>Test Frame A</h1>
+    <script>
+        const bc = new BroadcastChannel("test_a");
+        bc.postMessage("post from Test Frame A");
+    </script>
 </body>
 </html>
