@@ -20,7 +20,7 @@
             frameOutput.append('Waiting for lock_a... \n');
             await navigator.locks.request(
                 "lock_a",
-                { mode: "shared" },
+                { mode: "exclusive" },
                 async (lock) => {
                     frameOutput.append('Acquired lock_a... \n');
                     await promise;
