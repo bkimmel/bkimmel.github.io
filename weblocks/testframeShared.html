@@ -1,0 +1,40 @@
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Frame A</title>
+</head>
+<body style="text-align: center;">
+    <h1>Test Frame A</h1>
+    <output id="frameoutput" style="height: 10em; width: 100%; border: 1px solid black; margin: .25em; overflow: scroll;"></output>
+    <button id="getLock">Get Lock</button>
+    <button id="releaseLock">Release Lock</button>
+    <script defer>
+        let {promise, resolve, reject} = Promise.withResolvers();
+        const getLockButton = document.querySelector('#getLock');
+        const releaseLockButton = document.querySelector('#releaseLock');
+        const frameOutput = document.querySelector('#frameoutput');
+
+        getLockButton.addEventListener('click', async ()=>{
+            frameOutput.append('Waiting for lock_a... \n');
+            await navigator.locks.request(
+                "lock_a",
+                { mode: "shared" },
+                async (lock) => {
+                    frameOutput.append('Acquired lock_a... \n');
+                    await promise;
+                    frameOutput.append('Released lock_a... \n');
+                },
+            );
+        });
+
+        releaseLockButton.addEventListener('click', ()=>{
+            resolve();
+            frameOutput.append('Releasing lock_a... \n');
+            ({promise, resolve, reject} = Promise.withResolvers());
+        })
+        
+    </script>
+</body>
+</html>
