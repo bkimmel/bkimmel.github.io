@@ -1,29 +1,60 @@
 <html lang="en-US">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page Transition F</title>
-    <style>
-        @view-transition {
-            navigation: auto;
-        }
-        body {
-            font-family: sans-serif;
-            align-content: center;
-            font-size: 2em;
-            background-color: black;
-            color: white;
-        }
-    </style>
-</head>
-<body style="text-align: center;">
-    <h1>Page Transition Test</h1>
-    <nav><a href="/viewtransitions/pagec/">back</a></nav>
-     <code>
-        @view-transition {
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Page Transition F</title>
+        <style>
+            @view-transition {
+                navigation: auto;
+            }
+
+            body {
+                font-family: sans-serif;
+                align-content: center;
+                font-size: 2em;
+                background-color: black;
+                color: white;
+            }
+
+            @keyframes move-out {
+                from {
+                    transform: translateY(0%);
+                }
+
+                to {
+                    transform: translateY(-100%);
+                }
+            }
+
+            @keyframes move-in {
+                from {
+                    transform: translateY(100%);
+                }
+
+                to {
+                    transform: translateY(0%);
+                }
+            }
+
+            /* Apply the custom animation to the old and new page states */
+            ::view-transition-old(root) {
+                animation: 0.4s ease-in both move-out;
+            }
+
+            ::view-transition-new(root) {
+                animation: 0.4s ease-in both move-in;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+        <h1>Page Transition Test</h1>
+        <nav>
+            <a href="/viewtransitions/pagec/">back</a>
+        </nav>
+        <code>@view-transition {
             navigation: auto;
         }
     </code>
-</body>
+    </body>
 </html>
