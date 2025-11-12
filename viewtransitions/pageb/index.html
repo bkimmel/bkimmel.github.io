@@ -1,0 +1,57 @@
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Locks</title>
+    <script>
+        
+    </script>   
+</head>
+<body style="text-align: center;">
+    <h1>Locks Test</h1>
+    <h2>note: Locks not allowed from opaque context</h2>
+	<iframe
+        id="testframea"
+        title="Test Frame A"
+        width="100%"
+        height="100px"
+        src="./testframeA.html"
+        sandbox="allow-scripts">
+    </iframe>
+    <hr />
+    <iframe
+        id="testframeb"
+        title="Test Frame B"
+        width="100%"
+        height="100px"
+        src="./testframeA.html"
+    >
+    </iframe>
+    <iframe
+        id="testframec"
+        title="Test Frame C"
+        width="100%"
+        height="100px"
+        src="./testframeA.html"
+    >
+    </iframe>
+    <iframe
+        id="testframed"
+        title="Test Frame Shared"
+        width="100%"
+        height="100px"
+        src="./testframeShared.html"
+    >
+    </iframe>
+     <iframe
+        id="testframed"
+        title="Test Frame Shared 2"
+        width="100%"
+        height="100px"
+        src="./testframeShared.html"
+    >
+    </iframe>
+   
+</body>
+</html>
